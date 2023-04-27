@@ -104,5 +104,8 @@
       }
     }
   },
-  "defaultProject": "LibertyLib"
+  "defaultProject": "LibertyLib",
+  "cli": {
+    "analytics": false
+  }
 }

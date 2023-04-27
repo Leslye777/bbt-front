@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2, IterableDiffers, ChangeDetectorRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-home-page',
@@ -7,10 +10,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
 
-  ngOnInit(): void {
-    console.log("teste")
+  name = 'Angular';
+  slideNo = 0;
+  withAnim = true;
+  resetAnim = true;
+
+  @ViewChild('myCarousel')
+  myCarousel!: NguCarousel<any>;
+  carouselConfig: NguCarouselConfig = {
+    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
+    load: 3,
+    interval: {timing: 4000, initialDelay: 1000},
+    loop: true,
+    touch: true,
+    velocity: 0.2
   }
+  carouselItems = [1, 2, 3];
+
+  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer) {}
+  ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    this.cdr.detectChanges();
+  }
+
+  reset() {
+    this.myCarousel.reset(!this.resetAnim);
+  }
+
+  moveTo(slide: number) {
+    this.myCarousel.moveTo(slide, !this.withAnim);
+  }
+
+  sanitizeImagePath(imagePath: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(imagePath);
+  }
+
 
 }

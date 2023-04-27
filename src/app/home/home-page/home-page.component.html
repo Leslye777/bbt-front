@@ -1,4 +1,65 @@
-<h1>Olá Maria!</h1>
-<div>
-  <img class="imagem-de-fundo" src="assets/logo.png">
+<div class="page">
+  <h1 style="text-align: center;">Bem vindo User777</h1>
+  <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="[first, second, third]">
+    <div *nguCarouselDef="let item;" class="item">
+      <div class="tile">
+        <ng-container *ngTemplateOutlet="item"></ng-container>
+      </div>
+    </div>
+
+    <ng-template #first>
+      <img [src]="sanitizeImagePath('../../../assets/1enemewy.bmp')">
+    </ng-template>
+
+    <ng-template #second>
+      <img [src]="sanitizeImagePath('../../../assets/ezv2jtwv.bmp')">
+    </ng-template>
+
+    <ng-template #third>
+      <p>Third</p>
+    </ng-template>
+
+    <button NguCarouselNext class="rightRs">></button>
+    <button NguCarouselPrev class="leftRs"><</button>
+    <ul class="myPoint" NguCarouselPoint>
+      <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>
+    </ul>
+  </ngu-carousel>
+
+  <hr>
+  <h1>Bulletin Board</h1>
+  <div style="display: flex; flex-direction: column; width: 45%; float: right;">
+    <div class="board">
+      <a>"Biblioteca pública oferece acesso gratuito a e-books para incentivar a leitura digital""</a>
+    </div>
+
+    <div class="board">
+      <a>"Autor de best-seller anuncia novo romance para o final do ano"</a>
+    </div>
+    <div class="board">
+      <a>Links Uteis</a>
+    </div>
+    <div class="board-warning">
+      <a>Você possui pendencias</a>
+    </div>
+  </div>
+  <div style="display: flex; flex-direction: column; width: 45%;">
+    <div class="board">
+      <a>"Biblioteca pública oferece acesso gratuito a e-books para incentivar a leitura digital""</a>
+    </div>
+    <div class="board-warning">
+      <a>Data final para entrega de documentos </a>
+    </div>
+
+    <div class="board">
+      <a>"Autor de best-seller anuncia novo romance para o final do ano"</a>
+    </div>
+    <div class="board">
+      <a>Links Uteis</a>
+    </div>
+
+
+  </div>
+
+
 </div>

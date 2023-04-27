@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../model/book';
 import { BookService } from '../books.service';
 import { Router } from '@angular/router';
+import { SearchBookPipe } from '../pipes/search-book.pipe';
 
 @Component({
   selector: 'app-list-books',
@@ -10,9 +11,12 @@ import { Router } from '@angular/router';
 })
 export class ListBooksComponent implements OnInit {
 
-  books: any[] = [];
+  books: any[] = []; // assume que a lista de livros é carregada em algum lugar
+  selectedSearchType: string = 'title';
+  searchValue: string = '';
+  searchResult: any[] = [];
 
-  constructor(private bookService: BookService, private router: Router) { }
+  constructor(private bookService: BookService, private router: Router, private searchBookPipe: SearchBookPipe) { }
 
   ngOnInit(): void {
     this.buscarLivros();
@@ -22,9 +26,14 @@ export class ListBooksComponent implements OnInit {
   public buscarLivros(){
     this.bookService.getBooks().subscribe(response => {
       this.books = response;
-      console.log(response)
+      this.searchResult = response;
     });
   }
+
+  searchBooks() {
+    this.searchResult = this.searchBookPipe.transform(this.books, this.searchValue, this.selectedSearchType);
+  }
+
 
   public bookDetail(id: number){
     this.router.navigate(['/books/bookDetail/', id],);

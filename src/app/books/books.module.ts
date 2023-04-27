@@ -14,9 +14,10 @@ import { BooksRoutingModule } from './books-routing.module';
 import { ListBooksComponent } from './list-books/list-books.component';
 import { FormsModule } from '@angular/forms';
 import { DetailBookComponent } from './detail-book/detail-book.component';
+import { SearchBookPipe } from './pipes/search-book.pipe';
 
 @NgModule({
-  declarations: [ListBooksComponent, DetailBookComponent],
+  declarations: [ListBooksComponent, DetailBookComponent, SearchBookPipe],
   imports: [
     CommonModule,
     BooksRoutingModule,
@@ -27,9 +28,12 @@ import { DetailBookComponent } from './detail-book/detail-book.component';
     MatIconModule,
     MatInputModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
 
   ],
-  providers:[BookService]
+  exports:[
+    SearchBookPipe
+  ],
+  providers:[BookService, SearchBookPipe]
 })
 export class BooksModule {}

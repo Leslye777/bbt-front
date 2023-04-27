@@ -4,7 +4,17 @@
 .my-table-container {
   margin: 1rem 0;
   z-index: 1;
+  max-width: 700px;
+  min-width: 700px; /* ou outro valor que você achar adequado */
 }
+
+@media (max-width: 768px) {
+  .my-table-container {
+    max-width: 100%;
+    background-color: purple;
+  }
+}
+
 
 .my-table-header {
   font-size: 1.5rem;
@@ -56,3 +66,22 @@
 .my-table-details:hover {
   color: #005FA3;
 }
+
+.searchButton{
+  border-radius: 25px;
+  background-color:#3f51b5
+}
+
+.searchButton:hover{
+  border-radius: 25px;
+  background-color:#fff;
+}
+
+.searchButton:hover .searchIcon{
+  color: #3f51b5;
+}
+.searchIcon{
+  color: #fff;
+}
+
+

@@ -1,12 +1,117 @@
-.imagem-de-fundo {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: rgba(255, 255, 255, 0.5); /* aqui é definida a opacidade */
-  position: fixed;
-  top: 50;
-  left: 22%;
+/* Add application styles & imports to this file! */
+.item {
+  padding: 10px;
+  box-sizing: border-box;
+}
 
-  opacity: 0.5;
-  z-index: -1; /* coloca o elemento atrás do conteúdo da página */
+.tile {
+  min-height: 200px;
+  background-color: #ccc;
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.leftRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
+  border-radius: 999px;
+  z-index: 1;
+}
+
+.rightRs {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
+  border-radius: 999px;
+  right: 0;
+}
+
+.myPoint {
+  list-style-type: none;
+  text-align: center;
+  padding: 12px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: auto;
+  box-sizing: border-box;
+}
+.myPoint li {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.55);
+  padding: 4px;
+  margin: 0 3px;
+  transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  transition: 0.4s;
+}
+.myPoint li.active {
+  background: #6b6b6b;
+  transform: scale(1.2);
+}
+
+.page {
+  z-index: 9999999;
+  position: relative;
+  max-width: 600px;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  line-height: -2px;
+  border: 2px solid #3f51b5;
+  border-radius: 10px;
+  margin-top: 10px;
+  min-height: 45px;
+}
+
+.board:hover {
+  border: 1px solid #3f51b5;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #3f51b5;
+  cursor: pointer;
+  color: #fff;
+}
+
+.board-warning {
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+
+  line-height: -2px;
+  border: 2px solid #c00a0a;
+  border-radius: 10px;
+  margin-top: 10px;
+  min-height: 45px;
+}
+.board-warning:hover {
+  border: 1px solid #c00a0a;
+  border-radius: 10px;
+  margin-top: 10px;
+  background-color: #c00a0a;
+  cursor: pointer;
+  color: #fff;
 }

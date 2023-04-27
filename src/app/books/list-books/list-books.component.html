@@ -1,11 +1,28 @@
 <div class="my-table-container">
-  <h2 class="my-table-header">Livros</h2>
-  <div class="my-table-search">
-    <input matInput placeholder="Pesquisar">
-    <button mat-icon-button (click)="buscarLivros()">
-      <mat-icon>search</mat-icon>
-    </button>
-  </div>
+
+
+  <h2 class="my-table-header">Search by</h2>
+
+  <form style="text-align: center;">
+    <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="title">
+    <label>Title</label>
+    <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="author">
+    <label>Author</label>
+    <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="isbn">
+    <label>ISBN</label>
+    <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="publisher">
+    <label>Publisher</label>
+    <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="year">
+    <label>Year</label>
+
+    <div class="my-table-search">
+      <input matInput placeholder="Search" name="searchValue" [(ngModel)]="searchValue">
+      <button class="searchButton" mat-icon-button (click)="searchBooks()">
+        <mat-icon class="searchIcon">search</mat-icon>
+      </button>
+
+    </div>
+  </form>
   <table class="my-table">
     <thead>
       <tr>
@@ -18,7 +35,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let book of books">
+      <tr *ngFor="let book of searchResult">
         <td>{{ book.title }}</td>
         <td>{{ book.author }}</td>
         <td>{{ book.publicationYear }}</td>
@@ -31,4 +48,10 @@
       </tr>
     </tbody>
   </table>
+  <div style="display: flex; flex-direction: row; margin-top: 30px; float: right;">
+    <h2 class="my-table-header">Register book</h2>
+    <button mat-icon-button class="searchButton" style="margin-left: 5px;">
+      <mat-icon class="searchIcon">add_circle_outline</mat-icon>
+    </button>
+  </div>
 </div>

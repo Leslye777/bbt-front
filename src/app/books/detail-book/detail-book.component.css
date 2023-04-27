@@ -4,9 +4,10 @@
 .my-table-container {
   margin: 1rem 0;
   z-index: 1;
+  width: 100%;
 }
 .text-wrapper {
-  max-width: 600px; /* adjust to your desired width */
+  max-width: 700px; /* adjust to your desired width */
   margin: 0 auto; /* center the text horizontally */
   text-align: justify; /* justify the text for a clean appearance */
   line-height: 1.5; /* adjust for comfortable reading */
