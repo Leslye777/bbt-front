@@ -1,0 +1,49 @@
+<div class="my-table-container">
+  <div style="display: flex; flex-direction: row;">
+    <h2 class="my-table-header">{{copies[0]?.book.title}}</h2>
+    &nbsp;
+    &nbsp;
+    <label>{{copies[0]?.book.author}}</label> -
+    <label>{{copies[0]?.book.publicationYear}} -</label>
+    <label>{{copies[0]?.book.publisher}}</label>
+  </div>
+
+  <div class="text-wrapper">
+    Generally considered to be F. Scott Fitzgerald's finest novel, The Great Gatsby is a consummate summary of the "roaring
+    twenties", and a devastating expose of the 'Jazz Age'.
+    Through the narration of Nick Carraway, the reader is taken into the superficially glittering world of the mansions which lined the
+    Long Island shore in the 1920s, to encounter Nick's cousin Daisy, her brash but wealthy husband Tom Buchanan,
+    Jay Gatsby and the mystery that surrounds him. The Great Gatsby is an undisputed classic of American literature from the period following the
+    First World War and is one of the great novels of the twentieth century.
+  </div>
+  <table class="my-table" style="margin-top: 20px;">
+
+    <thead>
+      <tr>
+
+        <th>Id</th>
+        <th>Avaible</th>
+        <th>Loan Date</th>
+        <th>Return Date</th>
+        <th>Loaned to</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of copies">
+        <td>{{ book.id }}</td>
+        <td>{{ book.available }}</td>
+        <td>2022-05-01</td>
+        <td>2022-05-15{{ book.publicationYear }}</td>
+        <td>John Doe{{ book.publisher }}</td>
+        <td>
+          <mat-icon>swap_horiz</mat-icon>
+                <mat-icon>restore</mat-icon>
+          <mat-icon color="warn">delete</mat-icon>
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

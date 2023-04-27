@@ -1,0 +1,34 @@
+<div class="my-table-container">
+  <h2 class="my-table-header">Livros</h2>
+  <div class="my-table-search">
+    <input matInput placeholder="Pesquisar">
+    <button mat-icon-button (click)="buscarLivros()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </div>
+  <table class="my-table">
+    <thead>
+      <tr>
+
+        <th>Title</th>
+        <th>Author</th>
+        <th>Publication Year</th>
+        <th>Publisher</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>{{ book.title }}</td>
+        <td>{{ book.author }}</td>
+        <td>{{ book.publicationYear }}</td>
+        <td>{{ book.publisher }}</td>
+        <td> <button mat-icon-button class="my-table-details" (click)="bookDetail(book.id)">
+            <mat-icon>chevron_right</mat-icon>
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

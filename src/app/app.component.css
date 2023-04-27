@@ -1,0 +1,51 @@
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu__item {
+  display: block;
+  padding: 12px;
+  color: #3f51b5;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: 0.25s;
+  list-style: inside;
+}
+.menu__item:hover {
+  background-color: #cfd8dc;
+}
+
+li {
+  list-style: none;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.page-content {
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  object-fit: contain;
+  width: 100px;
+  height: 40px;
+  margin-top: 5px;
+}
+
+.logo-header {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 40px;
+  padding: 5px;
+}
+
+.example-container {
+  height: 80%;
+}
