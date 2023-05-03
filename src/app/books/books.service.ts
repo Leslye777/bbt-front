@@ -18,6 +18,14 @@ export class BookService {
     return this.http.get<any>(this.baseUrl+'book-copies/book-id/'+id);
   }
 
+  createBook(book:any): Observable<any>{
+    return this.http.post<any>(this.baseUrl+'books',book);
+  }
+
+  updateBook(book: any, id: number): Observable<any> {
+    return this.http.put<any>(this.baseUrl+'books/'+id, book);
+  }
+
 
 
   // outros métodos aqui, se necessário...

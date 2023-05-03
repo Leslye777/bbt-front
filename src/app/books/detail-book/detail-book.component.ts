@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Book } from '../model/book';
 import { BookService } from '../books.service';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-detail-book',
@@ -13,15 +13,23 @@ export class DetailBookComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private location: Location
   ) {}
 
   copies: any[] = [];
+  editing = false;
+
 
   ngOnInit() {
     const bookId = Number(this.route.snapshot.paramMap.get('id'));
     this.allCopies(bookId);
   }
+
+  onEdit() {
+    this.editing = true;
+  }
+
 
   public allCopies(id: number) {
     this.bookService.getBookCopiesByBookId(id).subscribe((response) => {
@@ -29,10 +37,19 @@ export class DetailBookComponent implements OnInit {
       console.log(response);
     });
   }
-  public onEdit() {
 
-  }
   public onDelete() {
 
   }
+
+  onSubmit() {
+    const bookId = Number(this.route.snapshot.paramMap.get('id'));
+
+    console.log(this.copies[0].book)
+    this.bookService.updateBook(this.copies[0]?.book, bookId).subscribe(() => {
+      this.editing = false;
+    });
+  }
+
+
 }

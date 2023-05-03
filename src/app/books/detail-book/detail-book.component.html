@@ -1,21 +1,65 @@
 <div class="my-table-container">
-  <div style="display: flex; flex-direction: row;">
-    <h2 class="my-table-header">{{copies[0]?.book.title}}</h2>
-    &nbsp;
-    &nbsp;
-    <label>{{copies[0]?.book.author}}</label> -
-    <label>{{copies[0]?.book.publicationYear}} -</label>
+  <div *ngIf="!editing; else editMode" style="display: flex; flex-flow: column;">
+    <div style="display: flex; flex-flow: row; justify-content: space-between;">
+      <h2 class="my-table-header">{{copies[0]?.book.title}}</h2>
+      <button mat-icon-button matTooltip="editar" (click)="onEdit()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </div>
+      <label>{{copies[0]?.book.author}}</label>
+    <label>{{copies[0]?.book.publicationYear}} </label>
     <label>{{copies[0]?.book.publisher}}</label>
+    <label>{{copies[0]?.book.isbn}}</label>
+    <label>{{copies[0]?.book.category}}</label>
+    &nbsp;
+    &nbsp;
+    <label>{{copies[0]?.book.description}}</label>
   </div>
 
-  <div class="text-wrapper">
-    Generally considered to be F. Scott Fitzgerald's finest novel, The Great Gatsby is a consummate summary of the "roaring
-    twenties", and a devastating expose of the 'Jazz Age'.
-    Through the narration of Nick Carraway, the reader is taken into the superficially glittering world of the mansions which lined the
-    Long Island shore in the 1920s, to encounter Nick's cousin Daisy, her brash but wealthy husband Tom Buchanan,
-    Jay Gatsby and the mystery that surrounds him. The Great Gatsby is an undisputed classic of American literature from the period following the
-    First World War and is one of the great novels of the twentieth century.
-  </div>
+  <ng-template #editMode>
+    <form>
+      <div style="display: flex; flex-flow: column;">
+        <div style="display: flex; flex-flow: row; justify-content: end;">
+          <div>
+            <button mat-icon-button (click)="editing = false">
+              <mat-icon>cancel</mat-icon>
+            </button>
+            <button mat-icon-button type="submit" (click)="onSubmit()">
+              <mat-icon>save</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input matInput [(ngModel)]="copies[0]?.book.title" name="title">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Author</mat-label>
+          <input matInput [(ngModel)]="copies[0]?.book.author" name="author">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Publication Year</mat-label>
+          <input matInput [(ngModel)]="copies[0]?.book.publicationYear" name="publicationYear">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Publisher</mat-label>
+          <input matInput [(ngModel)]="copies[0]?.book.publisher" name="publisher">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea matInput [(ngModel)]="copies[0]?.book.description" name="description"></textarea>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Category</mat-label>
+          <input matInput [(ngModel)]="copies[0]?.book.category" name="category">
+        </mat-form-field>
+      </div>
+    </form>
+  </ng-template>
+
+
   <table class="my-table" style="margin-top: 20px;">
 
     <thead>
@@ -38,7 +82,7 @@
         <td>John Doe{{ book.publisher }}</td>
         <td>
           <mat-icon>swap_horiz</mat-icon>
-                <mat-icon>restore</mat-icon>
+          <mat-icon>restore</mat-icon>
           <mat-icon color="warn">delete</mat-icon>
 
         </td>
@@ -46,4 +90,5 @@
       </tr>
     </tbody>
   </table>
+
 </div>

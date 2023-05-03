@@ -1,0 +1,12 @@
+mat-grid-tile {
+  padding: 10px;
+}
+
+mat-form-field {
+  width: 70%;
+}
+
+mat-card{
+  margin-left: 10%;
+  width: 80%;
+}

@@ -1,0 +1,61 @@
+
+<mat-card>
+  <mat-card-title>Cadastro de Livro</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+      <div style="display: flex;">
+        <div style="flex-basis: 50%;">
+          <mat-form-field appearance="fill">
+            <mat-label>Título</mat-label>
+            <input matInput formControlName="title">
+            <mat-error *ngIf="bookForm.controls['title'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Autor</mat-label>
+            <input matInput formControlName="author">
+            <mat-error *ngIf="bookForm.controls['author'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Ano de publicação</mat-label>
+            <input matInput type="number" formControlName="publicationYear">
+            <mat-error *ngIf="bookForm.controls['publicationYear'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Quantidade de cópias</mat-label>
+            <input matInput type="number" formControlName="copies" numbersOnly>
+            <mat-error *ngIf="bookForm.controls['copies'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+
+        </div>
+        <div style="flex-basis: 50%;">
+          <mat-form-field appearance="fill">
+            <mat-label>ISBN</mat-label>
+            <input matInput formControlName="isbn">
+            <mat-error *ngIf="bookForm.controls['isbn'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+
+          <mat-form-field appearance="fill">
+            <mat-label>Descrição</mat-label>
+            <input matInput formControlName="description">
+            <mat-error *ngIf="bookForm.controls['description'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Editora</mat-label>
+            <input matInput formControlName="publisher">
+            <mat-error *ngIf="bookForm.controls['publisher'].invalid">Campo obrigatório</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" style="display: flex;">Cadastrar</button>
+
+        </div>
+
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

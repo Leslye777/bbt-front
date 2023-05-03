@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../model/book';
 import { BookService } from '../books.service';
 import { Router } from '@angular/router';
-import { SearchBookPipe } from '../pipes/search-book.pipe';
+import { SearchBookPipe } from '../../pipes/search-book/search-book.pipe';
 
 @Component({
   selector: 'app-list-books',

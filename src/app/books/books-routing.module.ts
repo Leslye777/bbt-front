@@ -2,13 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListBooksComponent } from './list-books/list-books.component';
 import { DetailBookComponent } from './detail-book/detail-book.component';
+import { CreateBookComponent } from './create-book/create-book.component';
 
 const routes: Routes = [
-  {path: '', component: ListBooksComponent},
-  { path: 'bookDetail/:id', component: DetailBookComponent }
+  { path: '', component: ListBooksComponent },
+  { path: 'bookDetail/:id', component: DetailBookComponent },
+  { path: 'createBook', component: CreateBookComponent },
+
+
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class BooksRoutingModule { }
+export class BooksRoutingModule {}
