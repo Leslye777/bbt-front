@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../books.service';
 import { error } from 'console';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from 'src/app/modal/confirmation-modal/confirmation-modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-book',
@@ -11,7 +14,7 @@ import { error } from 'console';
 export class CreateBookComponent implements OnInit {
   bookForm!: FormGroup;
 
-  constructor(private fb: FormBuilder, private bookService: BookService) {}
+  constructor(private fb: FormBuilder, private bookService: BookService, private dialog: MatDialog, private router: Router) {}
 
   ngOnInit(): void {
     this.bookForm = this.fb.group({
@@ -38,10 +41,38 @@ export class CreateBookComponent implements OnInit {
   }
 
   onSubmit() {
+
+    if(this.bookForm.invalid){
+      this.bookForm.markAllAsTouched();
+      return
+    }
+
     this.bookService.createBook(this.bookForm.value).subscribe({
       next: (v) => console.log(v),
       error: (e) => console.error(e),
-      complete: () => console.info('complete'),
+      complete: () =>{
+        this.openConfirmationModal()
+        console.info('complete')
+      } ,
+    });
+  }
+
+  openConfirmationModal() {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'New book',
+        message: 'New book registered'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.router.navigate(['/books/'],);
+
+
+      if (result) {
+      } else {
+        // O usuário cancelou o modal
+      }
     });
   }
 }

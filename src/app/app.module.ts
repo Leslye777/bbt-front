@@ -8,12 +8,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent,ConfirmationModalComponent
 
 
 
@@ -25,6 +27,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

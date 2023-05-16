@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoansService } from '../loans.service';
+import { SearchLoanPipe } from '../../pipes/search-loan/search-loan.pipe'
 
 @Component({
   selector: 'app-list-loans',
@@ -7,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListLoansComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loanService: LoansService, private searchLoanPipe: SearchLoanPipe) { }
+
+  loans: any[] = [];
+  searchValue: string = '';
+  selectedSearchType: string = 'title';
+  searchResult: any[] = [];
+
 
   ngOnInit(): void {
-    console.log("teste")
+    this.getAllLoans();
   }
+
+  public getAllLoans(){
+    this.loanService.getLoans().subscribe(response => {
+      this.loans = response;
+      this.searchResult = response;
+    });
+  }
+
+
+  searchLoan() {
+    this.searchResult = this.searchLoanPipe.transform(this.loans, this.searchValue, this.selectedSearchType);
+  }
+
 
 }

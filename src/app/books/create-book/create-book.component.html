@@ -6,28 +6,28 @@
       <div style="display: flex;">
         <div style="flex-basis: 50%;">
           <mat-form-field appearance="fill">
-            <mat-label>Título</mat-label>
+            <mat-label>Title</mat-label>
             <input matInput formControlName="title">
-            <mat-error *ngIf="bookForm.controls['title'].invalid">Campo obrigatório</mat-error>
+            <mat-error *ngIf="bookForm.controls['title'].invalid">Not empty</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Autor</mat-label>
+            <mat-label>Author</mat-label>
             <input matInput formControlName="author">
-            <mat-error *ngIf="bookForm.controls['author'].invalid">Campo obrigatório</mat-error>
+            <mat-error *ngIf="bookForm.controls['author'].invalid">Not empty</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Ano de publicação</mat-label>
-            <input matInput type="number" formControlName="publicationYear">
-            <mat-error *ngIf="bookForm.controls['publicationYear'].invalid">Campo obrigatório</mat-error>
+            <mat-label>Publication Year</mat-label>
+            <input matInput type="number" formControlName="publicationYear" numbersOnly>
+            <mat-error *ngIf="bookForm.controls['publicationYear'].invalid">Not empty</mat-error>
           </mat-form-field>
 
 
           <mat-form-field appearance="fill">
-            <mat-label>Quantidade de cópias</mat-label>
+            <mat-label>Number of copies</mat-label>
             <input matInput type="number" formControlName="copies" numbersOnly>
-            <mat-error *ngIf="bookForm.controls['copies'].invalid">Campo obrigatório</mat-error>
+            <mat-error *ngIf="bookForm.controls['copies'].invalid">Not empty</mat-error>
           </mat-form-field>
 
 
@@ -36,22 +36,22 @@
           <mat-form-field appearance="fill">
             <mat-label>ISBN</mat-label>
             <input matInput formControlName="isbn">
-            <mat-error *ngIf="bookForm.controls['isbn'].invalid">Campo obrigatório</mat-error>
+            <mat-error *ngIf="bookForm.controls['isbn'].invalid">Not empty</mat-error>
           </mat-form-field>
 
 
           <mat-form-field appearance="fill">
-            <mat-label>Descrição</mat-label>
+            <mat-label>Description</mat-label>
             <input matInput formControlName="description">
-            <mat-error *ngIf="bookForm.controls['description'].invalid">Campo obrigatório</mat-error>
+            <mat-error *ngIf="bookForm.controls['description'].invalid">Not empty</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="fill">
-            <mat-label>Editora</mat-label>
+            <mat-label>Publisher</mat-label>
             <input matInput formControlName="publisher">
-            <mat-error *ngIf="bookForm.controls['publisher'].invalid">Campo obrigatório</mat-error>
+            <mat-error *ngIf="bookForm.controls['publisher'].invalid">Not empty</mat-error>
           </mat-form-field>
-          <button mat-raised-button color="primary" type="submit" style="display: flex;">Cadastrar</button>
+          <button mat-raised-button color="primary" type="submit" style="display: flex;">Done</button>
 
         </div>
 
