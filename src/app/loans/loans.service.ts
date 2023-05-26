@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LoansService {
 
-  private baseUrl = 'http://localhost:8001/api/';
+  private baseUrl = 'http://localhost:8765/lib/api/';
 
   constructor(private http: HttpClient) { }
 

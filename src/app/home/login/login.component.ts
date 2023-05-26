@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -19,12 +20,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (this.loginForm.invalid) {
-      // Exibe mensagens de erro nos campos inválidos
-      this.loginForm.markAllAsTouched();
-      return;
-    }
+    // if (this.loginForm.invalid) {
+    //   // Exibe mensagens de erro nos campos inválidos
+    //   this.loginForm.markAllAsTouched();
+    //   return;
+    // }
 
+    this.router.navigate(['/home/'],);
     // Resto do código para realizar o login
   }
 }

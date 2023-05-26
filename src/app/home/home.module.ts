@@ -9,6 +9,7 @@ import { LoginComponent } from './login/login.component';
 import {MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -23,8 +24,13 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     ReactiveFormsModule,
     FormsModule,
-    MatInputModule
-  ]
+    MatInputModule,
+    HttpClientModule
+  ],
+  exports:[
+
+  ],
+  providers:[HomeService]
 
 })
 export class HomeModule { }
