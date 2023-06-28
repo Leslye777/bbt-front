@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoansService } from '../loans.service';
-import { SearchLoanPipe } from '../../pipes/search-loan/search-loan.pipe'
+import { SearchLoanPipe } from '../../pipes/search-loan/search-loan.pipe';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-list-loans',
@@ -16,9 +17,13 @@ export class ListLoansComponent implements OnInit {
   selectedSearchType: string = 'title';
   searchResult: any[] = [];
 
-
   ngOnInit(): void {
     this.getAllLoans();
+
+    // Atualizar a cada 5 segundos
+    interval(5000).subscribe(() => {
+      this.getAllLoans();
+    });
   }
 
   public getAllLoans(){
@@ -28,10 +33,8 @@ export class ListLoansComponent implements OnInit {
     });
   }
 
-
   searchLoan() {
     this.searchResult = this.searchLoanPipe.transform(this.loans, this.searchValue, this.selectedSearchType);
   }
-
 
 }

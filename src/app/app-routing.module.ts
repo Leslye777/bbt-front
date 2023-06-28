@@ -14,11 +14,15 @@ const routes: Routes = [
     loadChildren: () =>
       import('./books/books.module').then((m) => m.BooksModule),
   },
-
   {
     path: 'loans',
     loadChildren: () =>
       import('./loans/loans.module').then((m) => m.LoansModule),
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
   },
 ];
 

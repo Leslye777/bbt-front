@@ -1,23 +1,22 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomePageComponent } from './home-page/home-page.component';
-import { HomeService } from './home.service';
-import { HomeRoutingModule } from './home-routing.module';
 import { NguCarouselModule } from '@ngu/carousel';
 import {MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { LoginRoutingModule } from './login-routing.module';
 
 @NgModule({
   declarations: [
-    HomePageComponent,
+    LoginComponent,
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,
     NguCarouselModule,
+    LoginRoutingModule,
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
@@ -25,10 +24,5 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     HttpClientModule
   ],
-  exports:[
-
-  ],
-  providers:[HomeService]
-
 })
-export class HomeModule { }
+export class LoginModule { }
