@@ -2,6 +2,7 @@ import { HomeService } from './../home.service';
 import { Component, OnInit, ElementRef, Renderer2, IterableDiffers, ChangeDetectorRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { SessionStorageService } from 'angular-web-storage';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class HomePageComponent implements OnInit {
   }
   carouselItems = [1, 2, 3];
 
-  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private homeService: HomeService) {}
+  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer,
+    private session: SessionStorageService, private homeService: HomeService) {}
   ngOnInit(): void {
     this.getData();
-    window.location.reload
+
 
   }
 
@@ -53,9 +55,8 @@ export class HomePageComponent implements OnInit {
   }
 
   public getData(){
-    this.homeService.getUser(1).subscribe(response => {
-      console.log(response)
-    });
+    console.log(this.session.get('email'))
+    console.log(this.session.get('role'))
   }
 
 

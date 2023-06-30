@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginRoutingModule } from './login-routing.module';
 import { LoginService } from './login.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,16 @@ import { LoginService } from './login.service';
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          const token = localStorage.getItem('token');
+          return token ? token : null; // ou return token ? token : '';
+        },
+        // Outras opções de configuração, se necessário
+      },
+    }),
   ],
   providers:[LoginService]
 })

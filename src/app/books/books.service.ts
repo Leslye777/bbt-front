@@ -1,5 +1,6 @@
 import { HttpClientModule, HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { SessionStorageService } from 'angular-web-storage';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class BookService {
   private baseUrl = 'http://localhost:8765/lib/api/';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private session: SessionStorageService) { }
 
   getBooks(): Observable<any> {
     const headers = this.getAuthorizationHeaders();
@@ -31,7 +32,7 @@ export class BookService {
   }
 
   private getAuthorizationHeaders(): HttpHeaders {
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODgxMTQ4NjksInVzZXJfbmFtZSI6Im5pbmFAZ21haWwuY29tIiwiYXV0aG9yaXRpZXMiOlsiVVNFUiJdLCJqdGkiOiJiZjA4N2JkZi03YjUxLTQyOTAtODkxZi00MTMxOWEwOTViMDUiLCJjbGllbnRfaWQiOiJteWFwcG5hbWUxMjMiLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXX0.0QXqNR689_Ldrapglc39lMsB5JaLinzYx9ryISwIcuo'; // Substitua pelo token de acesso real
+    const token = this.session.get('token');
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`

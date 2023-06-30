@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { SessionStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { NavigationEnd, Router } from '@angular/router';
 
 export class AppComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,  private session: SessionStorageService) { }
 
   lastSegment: any;
 
@@ -26,6 +27,10 @@ export class AppComponent {
     });
   }
 
+  exit(){
+    this.session.remove('token');
+    console.log("saiu");
+  }
 
   title = 'LibertyLib';
 

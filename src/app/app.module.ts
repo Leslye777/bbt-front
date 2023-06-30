@@ -10,15 +10,13 @@ import { AppComponent } from './app.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmation-modal.component';
+import { AuthGuard } from './auth.guard';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,ConfirmationModalComponent
-
-
-
    ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ import { ConfirmationModalComponent } from './modal/confirmation-modal/confirmat
     MatSidenavModule,
     MatDialogModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
