@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { LoginRoutingModule } from './login-routing.module';
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
@@ -24,5 +25,6 @@ import { LoginRoutingModule } from './login-routing.module';
     MatInputModule,
     HttpClientModule
   ],
+  providers:[LoginService]
 })
 export class LoginModule { }

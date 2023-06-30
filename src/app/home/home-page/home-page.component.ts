@@ -32,6 +32,7 @@ export class HomePageComponent implements OnInit {
   constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer, private homeService: HomeService) {}
   ngOnInit(): void {
     this.getData();
+    window.location.reload
 
   }
 

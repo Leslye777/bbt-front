@@ -13,7 +13,7 @@
 </div>
 
 <mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+  <mat-drawer  #drawer class="example-sidenav" mode="side">
     <div class="hamburger-menu">
         <li><a class="menu__item" routerLink="/home"><i class="material-icons">home</i> Home</a></li>
         <li><a class="menu__item" routerLink="/books"><i class="material-icons">menu_book</i> Book</a></li>
@@ -23,8 +23,8 @@
     </div>
   </mat-drawer>
 
-  <div class="example-sidenav-content" >
-    <button mat-icon-button (click)="drawer.toggle()" style="border: none;">
+  <div  class="example-sidenav-content" >
+    <button *ngIf="lastSegment!=='login'" mat-icon-button (click)="drawer.toggle()" style="border: none;">
       <mat-icon>{{drawer.opened ? 'close' : 'menu'}}</mat-icon>
     </button>
     <div class="page-content">
