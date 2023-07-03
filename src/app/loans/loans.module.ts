@@ -10,12 +10,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchLoanPipe } from '../pipes/search-loan/search-loan.pipe';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { DetailLoanComponent } from './detail-loan/detail-loan.component';
 
 
 
 @NgModule({
   declarations: [
-    ListLoansComponent, SearchLoanPipe
+    ListLoansComponent, SearchLoanPipe, DetailLoanComponent
   ],
   imports: [
     CommonModule,

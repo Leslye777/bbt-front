@@ -11,6 +11,9 @@ import { SessionStorageService } from 'angular-web-storage';
 
 export class AppComponent {
 
+  title = 'LibertyLib';
+  userRole: any;
+
   constructor(private router: Router,  private session: SessionStorageService) { }
 
   lastSegment: any;
@@ -32,6 +35,14 @@ export class AppComponent {
     console.log("saiu");
   }
 
-  title = 'LibertyLib';
+
+
+  public verificaUser(){
+    this.userRole = this.session.get('role')
+    if(this.userRole === 'USER'){
+      return true
+    }
+    return false
+  }
 
 }

@@ -1,0 +1,76 @@
+<!-- loans.component.html -->
+<h1 style="margin-left: 20px;">Loan Details</h1>
+<div class="container">
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Book Details</h2>
+    </div>
+    <div class="card-content">
+      <div>
+        <strong>Title:</strong> {{ loan?.bookCopy?.book?.title }}
+      </div>
+      <div>
+        <strong>Author:</strong> {{ loan?.bookCopy?.book?.author }}
+      </div>
+      <div>
+        <strong>Publisher:</strong> {{ loan?.bookCopy?.book?.publisher }}
+      </div>
+      <div>
+        <strong>Description:</strong> {{ loan?.bookCopy?.book?.description }}
+      </div>
+      <div>
+        <strong>ISBN:</strong> {{ loan?.bookCopy?.book?.isbn }}
+      </div>
+      <div>
+        <strong>Category:</strong> {{ loan?.bookCopy?.book?.category }}
+      </div>
+      <div>
+        <strong>Publication Year:</strong> {{ loan?.bookCopy?.book?.publicationYear }}
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h2>Loan Details</h2>
+    </div>
+    <div class="card-content">
+      <div>
+        <strong>Loan ID:</strong> {{ loan?.id }}
+      </div>
+      <div>
+        <strong>Loan Date:</strong> {{ loan?.loanDate }}
+      </div>
+      <div>
+        <strong>Expected Return Date:</strong> {{ loan?.expecteReturnDate }}
+      </div>
+      <div>
+        <strong>Return Date:</strong> {{ loan?.returnDate || 'Not returned' }}
+      </div>
+
+      <div>
+        <strong>Returned:</strong> {{ loan?.returned ? 'Yes' : 'No' }}
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <h2>Loan Details</h2>
+    </div>
+    <div class="card-content">
+      <div>
+        <strong>First Name:</strong> {{ user?.firstName }}
+      </div>
+      <div>
+        <strong>Last Name:</strong> {{ user?.lastName }}
+      </div>
+      <div>
+        <strong>User Id:</strong> {{ user?.id }}
+      </div>
+      <div>
+        <strong>Email:</strong> {{ user?.email || 'Not returned' }}
+      </div>
+    </div>
+  </div>
+</div>

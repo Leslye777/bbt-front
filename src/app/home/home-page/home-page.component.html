@@ -1,5 +1,5 @@
 <div class="page">
-  <h1 style="text-align: center;">Bem vindo User777</h1>
+  <h1 style="text-align: center;">Olá {{user?.firstName}} {{user?.lastName}} </h1>
   <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="[first, second, third]">
     <div *nguCarouselDef="let item;" class="item">
       <div class="tile">

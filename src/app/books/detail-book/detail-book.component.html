@@ -18,7 +18,7 @@
 
   <ng-template #editMode>
     <form>
-      <div style="display: flex; flex-flow: column;">
+      <div style="display: flex; flex-flow: column; min-width: 470px;">
         <div style="display: flex; flex-flow: row; justify-content: end;">
           <div>
             <button mat-icon-button (click)="editing = false">
@@ -32,28 +32,29 @@
 
         <mat-form-field>
           <mat-label>Title</mat-label>
-          <input matInput [(ngModel)]="copies[0]?.book.title" name="title">
+          <input matInput [(ngModel)]="copies[0]?.book.title" name="title" required>
+          <mat-error>Title is required</mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Author</mat-label>
-          <input matInput [(ngModel)]="copies[0]?.book.author" name="author">
+          <input matInput [(ngModel)]="copies[0]?.book.author" name="author" required>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Publication Year</mat-label>
-          <input matInput [(ngModel)]="copies[0]?.book.publicationYear" name="publicationYear">
+          <input matInput [(ngModel)]="copies[0]?.book.publicationYear" name="publicationYear" required>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Publisher</mat-label>
-          <input matInput [(ngModel)]="copies[0]?.book.publisher" name="publisher">
+          <input matInput [(ngModel)]="copies[0]?.book.publisher" name="publisher"required>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Description</mat-label>
-          <textarea matInput [(ngModel)]="copies[0]?.book.description" name="description"></textarea>
+          <textarea matInput [(ngModel)]="copies[0]?.book.description" name="description"required></textarea>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Category</mat-label>
-          <input matInput [(ngModel)]="copies[0]?.book.category" name="category">
+          <input matInput [(ngModel)]="copies[0]?.book.category" name="category"required>
         </mat-form-field>
       </div>
     </form>
@@ -64,22 +65,19 @@
 
     <thead>
       <tr>
-
         <th>Id</th>
-        <th>Avaible</th>
-        <th>Loan Date</th>
-        <th>Return Date</th>
-        <th>Loaned to</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let book of copies">
         <td>{{ book.id }}</td>
-        <td>{{ book.available }}</td>
-        <td>2022-05-01</td>
-        <td>2022-05-15{{ book.publicationYear }}</td>
-        <td>John Doe{{ book.publisher }}</td>
+       <td>
+          <span *ngIf="book.borrowed === true" style="color: red;">Borrowed</span>
+          <span *ngIf="book.borrowed === false" style="color: green;">Avaible</span>
+          <span *ngIf="book.reserved=== true" style="color: rgba(199, 199, 6, 0.735);">Avaible</span>
 
+        </td>
 
       </tr>
     </tbody>

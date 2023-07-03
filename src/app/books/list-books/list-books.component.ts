@@ -1,3 +1,4 @@
+import { SessionStorageService } from 'angular-web-storage';
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../model/book';
 import { BookService } from '../books.service';
@@ -16,11 +17,21 @@ export class ListBooksComponent implements OnInit {
   searchValue: string = '';
   searchResult: any[] = [];
 
-  constructor(private bookService: BookService, private router: Router, private searchBookPipe: SearchBookPipe) { }
+  userRole: any;
+  constructor(private bookService: BookService, private router: Router, private searchBookPipe: SearchBookPipe,
+    private sessionStorage: SessionStorageService) { }
 
   ngOnInit(): void {
     this.buscarLivros();
 
+  }
+
+  public verificaUser(){
+    this.userRole = this.sessionStorage.get('role')
+    if(this.userRole === 'USER'){
+      return true
+    }
+    return false
   }
 
   public buscarLivros(){

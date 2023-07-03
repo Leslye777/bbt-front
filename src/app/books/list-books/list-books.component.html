@@ -12,11 +12,9 @@
     <label>ISBN</label>
     <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="publisher">
     <label>Publisher</label>
-    <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="year">
-    <label>Year</label>
 
     <div class="my-table-search">
-      <input matInput placeholder="Search" name="searchValue" [(ngModel)]="searchValue">
+      <input  placeholder="Search" name="searchValue" [(ngModel)]="searchValue">
       <button class="searchButton" mat-icon-button (click)="searchBooks()">
         <mat-icon class="searchIcon">search</mat-icon>
       </button>
@@ -48,7 +46,7 @@
       </tr>
     </tbody>
   </table>
-  <div style="display: flex; flex-direction: row; margin-top: 30px; float: right; cursor: pointer;" routerLink="/books/createBook">
+  <div *ngIf="!verificaUser()" style="display: flex; flex-direction: row; margin-top: 30px; float: right; cursor: pointer;" routerLink="/books/createBook">
     <h2 class="my-table-header">Register book</h2>
     <button mat-icon-button class="searchButton" style="margin-left: 5px;">
       <mat-icon class="searchIcon">add_circle_outline</mat-icon>

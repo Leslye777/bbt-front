@@ -18,6 +18,9 @@ export class HomePageComponent implements OnInit {
   withAnim = true;
   resetAnim = true;
 
+  user: any;
+
+
   @ViewChild('myCarousel')
   myCarousel!: NguCarousel<any>;
   carouselConfig: NguCarouselConfig = {
@@ -55,6 +58,10 @@ export class HomePageComponent implements OnInit {
   }
 
   public getData(){
+    this.homeService.getUserByEmail(this.session.get('email')).subscribe((response) => {
+      this.user = response;
+      console.log(response);
+    });
     console.log(this.session.get('email'))
     console.log(this.session.get('role'))
   }

@@ -17,16 +17,11 @@ export class HomeService {
     return this.http.get<any>(this.baseUrl+'users/'+id,{headers});
   }
 
+  getUserByEmail(email: String): Observable<any>{
+    const headers = this.getAuthorizationHeaders();
+    return this.http.get<any>(this.baseUrl+'users/search?email='+email,{headers});
 
-  // getBooks(): Observable<any> {
-  //   const headers = this.getAuthorizationHeaders();
-  //   return this.http.get<any>(this.baseUrl + 'books', { headers });
-  // }
-
-  // getBookCopiesByBookId(id: number): Observable<any> {
-  //   const headers = this.getAuthorizationHeaders();
-  //   return this.http.get<any>(this.baseUrl + 'book-copies/book-id/' + id, { headers });
-  // }
+  }
 
 
   private getAuthorizationHeaders(): HttpHeaders {
