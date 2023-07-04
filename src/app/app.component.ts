@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 import { SessionStorageService } from 'angular-web-storage';
 
@@ -14,7 +15,8 @@ export class AppComponent {
   title = 'LibertyLib';
   userRole: any;
 
-  constructor(private router: Router,  private session: SessionStorageService) { }
+  constructor(private router: Router,  private session: SessionStorageService,
+    private sanitizer: DomSanitizer) { }
 
   lastSegment: any;
 
@@ -33,6 +35,10 @@ export class AppComponent {
   exit(){
     this.session.remove('token');
     console.log("saiu");
+  }
+
+  sanitizeImagePath(imagePath: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(imagePath);
   }
 
 

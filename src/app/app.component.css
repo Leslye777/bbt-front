@@ -15,7 +15,8 @@
   list-style: inside;
 }
 .menu__item:hover {
-  background-color: #cfd8dc;
+  background-color: #5763e6;
+  color: white;
 }
 
 li {

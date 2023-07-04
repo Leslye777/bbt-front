@@ -1,7 +1,7 @@
 /* loans.component.css */
 .container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding: 20px;
 }
 

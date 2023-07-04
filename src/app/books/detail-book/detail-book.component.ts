@@ -5,6 +5,7 @@ import { BookService } from '../books.service';
 import { Location } from '@angular/common';
 import { ConfirmationModalComponent } from 'src/app/modal/confirmation-modal/confirmation-modal.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SessionStorageService } from 'angular-web-storage';
 
 @Component({
   selector: 'app-detail-book',
@@ -12,17 +13,27 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./detail-book.component.css'],
 })
 export class DetailBookComponent implements OnInit {
+  userRole!: string;
 
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
     private location: Location,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private sessionStorage: SessionStorageService
   ) {}
 
   copies: any[] = [];
   editing = false;
+
+  public verificaUser(){
+    this.userRole = this.sessionStorage.get('role')
+    if(this.userRole === 'USER'){
+      return true
+    }
+    return false
+  }
 
 
   ngOnInit() {

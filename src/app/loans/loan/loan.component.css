@@ -40,3 +40,9 @@ input[type="text"] {
 .login-button:hover {
   background-color: #3f51b5;
 }
+
+.my-table-header {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}

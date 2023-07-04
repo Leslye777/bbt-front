@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class LoanComponent {
   bookCode!: string;
   userId!: string;
+  toggleValue: boolean = false;
 
   constructor(private loansService: LoansService, private dialog: MatDialog,) {}
 
@@ -39,6 +40,7 @@ export class LoanComponent {
       }
     });
 
+
     // dialogRef.afterClosed().subscribe(result => {
 
     //   this.route.navigate(['/loans']);
@@ -49,6 +51,16 @@ export class LoanComponent {
     //     // O usuário cancelou o modal
     //   }
     // });
+  }
+
+  toggleOption() {
+    if (this.toggleValue) {
+      console.log('Return option selected');
+      // Lógica adicional para a opção Return
+    } else {
+      console.log('Loan option selected');
+      // Lógica adicional para a opção Loan
+    }
   }
 
 }

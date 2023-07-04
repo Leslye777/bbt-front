@@ -2,7 +2,7 @@
   <div *ngIf="!editing; else editMode" style="display: flex; flex-flow: column;">
     <div style="display: flex; flex-flow: row; justify-content: space-between;">
       <h2 class="my-table-header">{{copies[0]?.book.title}}</h2>
-      <button mat-icon-button matTooltip="editar" (click)="onEdit()">
+      <button *ngIf="!verificaUser()" mat-icon-button matTooltip="editar" (click)="onEdit()">
         <mat-icon>edit</mat-icon>
       </button>
     </div>
