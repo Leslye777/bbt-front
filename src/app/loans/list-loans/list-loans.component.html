@@ -1,6 +1,9 @@
 <div *ngIf="!verificaUser()" class="my-table-container">
   <h2 class="my-table-header">Search by</h2>
 
+
+
+
   <form style="text-align: center;">
     <div></div>
     <input type="radio" name="searchType" [(ngModel)]="selectedSearchType" value="userId">
@@ -16,6 +19,10 @@
         <mat-icon class="searchIcon">search</mat-icon>
       </button>
     </div>
+    <button class="searchButton" mat-icon-button routerLink="loan">
+      <mat-icon class="searchIcon">add_circle_outline</mat-icon>
+    </button>
+
   </form>
 
   <table class="my-table">

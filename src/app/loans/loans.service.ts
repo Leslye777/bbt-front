@@ -45,10 +45,18 @@ export class LoansService {
   }
 
 
+
   getUserByEmail(email: String): Observable<any>{
     const headers = this.getAuthorizationHeaders();
     return this.http.get<any>(this.url2+'users/search?email='+email,{headers});
 
+  }
+
+  borrowBook(userId: number, bookCopyId: number): Observable<any> {
+    const headers = this.getAuthorizationHeaders();
+    const url = `${this.baseUrl}loans?userId=${userId}&bookCopyId=${bookCopyId}`;
+
+    return this.http.post(url, null, { headers });
   }
 
 
