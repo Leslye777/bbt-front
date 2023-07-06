@@ -23,6 +23,23 @@ export class LoanComponent {
         .subscribe(
           response => {
             this.openConfirmationModal("Success", 'OK');
+            // Lógica adicional após o empréstimo do livro se r realizado
+          },
+          error => {
+            this.openConfirmationModal(error.error, "Error");
+          }
+        );
+    }
+  }
+
+  submitReturn() {
+    // Verifica se os campos foram preenchidos
+    if (this.bookCode) {
+      // Chama o serviço para fazer a solicitação de empréstimo
+      this.loansService.putReturn(Number(this.bookCode))
+        .subscribe(
+          response => {
+            this.openConfirmationModal("Success", 'OK');
             // Lógica adicional após o empréstimo do livro ser realizado
           },
           error => {

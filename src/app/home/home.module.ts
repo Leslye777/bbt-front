@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     HomePageComponent,
+
   ],
   imports: [
     CommonModule,

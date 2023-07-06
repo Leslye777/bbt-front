@@ -39,6 +39,12 @@ export class LoansService {
     return this.http.put<any>(this.baseUrl + 'loans/' + id + '/renew', {}, options);
   }
 
+  putReturn(id: Number):Observable<any> {
+    const options = { headers: this.getAuthorizationHeaders() };
+    const headers = this.getAuthorizationHeaders();
+    return this.http.put<any>(this.baseUrl + 'loans/' + id + '/return', {}, options);
+  }
+
   getUserById(id: Number): Observable<any>{
     const headers = this.getAuthorizationHeaders();
     return this.http.get<any>(this.url2+'users/'+id,{headers});

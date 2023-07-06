@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: '', component: ListBooksComponent },
   { path: 'bookDetail/:id', component: DetailBookComponent },
   { path: 'createBook', component: CreateBookComponent },
+  { path: 'notification', component: Notification },
 
 
 ];

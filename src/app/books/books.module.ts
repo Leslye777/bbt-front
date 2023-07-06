@@ -19,9 +19,10 @@ import { DetailBookComponent } from './detail-book/detail-book.component';
 import { ListBooksComponent } from './list-books/list-books.component';
 import { SearchBookPipe } from '../pipes/search-book/search-book.pipe';
 import { NumbersOnlyDirective } from '../directives/numbers-only/numbers-only.directive';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
-  declarations: [ListBooksComponent, DetailBookComponent, SearchBookPipe, CreateBookComponent, NumbersOnlyDirective],
+  declarations: [ListBooksComponent, DetailBookComponent, SearchBookPipe, CreateBookComponent, NumbersOnlyDirective, NotificationComponent],
   imports: [
     CommonModule,
     BooksRoutingModule,
@@ -37,7 +38,7 @@ import { NumbersOnlyDirective } from '../directives/numbers-only/numbers-only.di
     MatCheckboxModule,
     MatButtonModule,
     ReactiveFormsModule,
-    
+
 
 
   ],

@@ -75,8 +75,11 @@
        <td>
           <span *ngIf="book.borrowed === true" style="color: red;">Borrowed</span>
           <span *ngIf="book.borrowed === false" style="color: green;">Avaible</span>
-          <span *ngIf="book.reserved=== true" style="color: rgba(199, 199, 6, 0.735);">Avaible</span>
+          <span *ngIf="book.reserved=== true" style="color: rgba(199, 199, 6, 0.735);">Reserved</span>
 
+        </td>
+        <td *ngIf="book.borrowed === true">
+          <i class="material-icons">access_time</i>
         </td>
 
       </tr>

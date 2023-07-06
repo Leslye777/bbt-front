@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
         this.session.set('role', tokenInfo.authorities[0]);
 
 
-        const routeUrl = '/home'; // Substitua pela URL da rota desejada
+        const routeUrl = '/home';
         this.router.navigateByUrl(routeUrl, { skipLocationChange: false });
       },
       (error) => {
