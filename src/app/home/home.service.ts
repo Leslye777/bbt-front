@@ -20,7 +20,11 @@ export class HomeService {
   getUserByEmail(email: String): Observable<any>{
     const headers = this.getAuthorizationHeaders();
     return this.http.get<any>(this.baseUrl+'users/search?email='+email,{headers});
+  }
 
+  getNotes(): Observable<any> {
+    const headers = this.getAuthorizationHeaders();
+    return this.http.get<any>('http://localhost:8765/user/api/notifications', { headers });
   }
 
 

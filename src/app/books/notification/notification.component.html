@@ -1,1 +1,11 @@
-<p>notification works!</p>
+<form>
+  <div class="form-group">
+    <label for="bookCode">Note:</label>
+    <input type="text" id="bookCode" name="bookCode" class="" [(ngModel)]="message" required>
+  </div>
+  <div class="form-group">
+    <label for="userId">Link</label>
+    <input type="text" id="userId" name="userId" class="" [(ngModel)]="link" required>
+  </div>
+  <button mat-raised-button class="login-button" type="submit" (click)="teste()">Confirm</button>
+</form>

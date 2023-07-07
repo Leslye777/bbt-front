@@ -39,6 +39,7 @@ export class HomePageComponent implements OnInit {
     this.getData();
 
 
+
   }
 
   ngAfterViewInit() {

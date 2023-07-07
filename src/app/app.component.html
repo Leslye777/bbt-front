@@ -17,7 +17,7 @@
     <div class="hamburger-menu">
         <li><a class="menu__item" routerLink="/home"><i class="material-icons">home</i> Home</a></li>
         <li><a class="menu__item" routerLink="/books"><i class="material-icons">menu_book</i> Book</a></li>
-        <li><a class="menu__item" href="#"><i class="material-icons">people</i> User</a></li>
+        <li *ngIf="!verificaUser()"><a class="menu__item"  routerLink="/books/notification"><i class="material-icons">people</i> User</a></li>
         <li *ngIf="!verificaUser()"><a class="menu__item" routerLink="/loans/loan"><i class="material-icons">book</i> Loan/Return</a></li>
         <li><a class="menu__item" routerLink="/loans"><i class="material-icons">event_note</i>
           <span *ngIf="verificaUser()"> My Loans</span>

@@ -31,6 +31,11 @@ export class BookService {
     return this.http.put<any>(this.baseUrl + 'books/' + id, book, { headers });
   }
 
+  createNote(message: any): Observable<any> {
+    const headers = this.getAuthorizationHeaders();
+    return this.http.post<any>('http://localhost:8765/user/api/notifications', message, { headers });
+  }
+
   private getAuthorizationHeaders(): HttpHeaders {
     const token = this.session.get('token');
     const headers = new HttpHeaders({
