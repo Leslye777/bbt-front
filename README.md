@@ -1,6 +1,6 @@
-# Angular Library Management System
+# Liberty Lib: Angular Library Management System
 
-Welcome to the Angular Library Management System! This is a library management system developed with love and brilliant Angular code. Get ready to explore a world of books and loans, all wrapped in an elegant and functional interface.
+Welcome to Liberty Lib, the Angular Library Management System! This is a library management system developed with love and brilliant Angular code. Get ready to explore a world of books and loans, all wrapped in an elegant and functional interface.
 
 ## Stellar Features 🌟
 
@@ -40,8 +40,7 @@ For more details on how to contribute and run the project locally, check out the
 
 This project is under the MIT license - feel free to use, modify, and distribute as you wish. Just don't forget to mention us in the acknowledgments of your next best-seller!
 
-Enjoy exploring the library, and remember: each page turned is a new adventure. 📖✨
-
+Enjoy exploring Liberty Lib, and remember: each page turned is a new adventure. 📖✨
 
 
 
