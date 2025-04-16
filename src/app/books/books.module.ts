@@ -17,12 +17,16 @@ import { BookService } from './books.service';
 import { CreateBookComponent } from './create-book/create-book.component';
 import { DetailBookComponent } from './detail-book/detail-book.component';
 import { ListBooksComponent } from './list-books/list-books.component';
-import { SearchBookPipe } from '../pipes/search-book/search-book.pipe';
-import { NumbersOnlyDirective } from '../directives/numbers-only/numbers-only.directive';
 import { NotificationComponent } from './notification/notification.component';
+import { UtilsModule } from '../utils/utils.module'; // Importa o UtilsModule
 
 @NgModule({
-  declarations: [ListBooksComponent, DetailBookComponent, SearchBookPipe, CreateBookComponent, NumbersOnlyDirective, NotificationComponent],
+  declarations: [
+    ListBooksComponent,
+    DetailBookComponent,
+    CreateBookComponent,
+    NotificationComponent,
+  ],
   imports: [
     CommonModule,
     BooksRoutingModule,
@@ -38,13 +42,8 @@ import { NotificationComponent } from './notification/notification.component';
     MatCheckboxModule,
     MatButtonModule,
     ReactiveFormsModule,
-
-
-
+    UtilsModule, // Usa o UtilsModule para pipes, directives e cards
   ],
-  exports:[
-    SearchBookPipe
-  ],
-  providers:[BookService, SearchBookPipe]
+  providers: [BookService],
 })
 export class BooksModule {}

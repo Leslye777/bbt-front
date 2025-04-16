@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../model/book';
 import { BookService } from '../books.service';
 import { Location } from '@angular/common';
-import { ConfirmationModalComponent } from 'src/app/modal/confirmation-modal/confirmation-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { SessionStorageService } from 'angular-web-storage';
+import { ConfirmationModalComponent } from 'src/app/utils/modal/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-detail-book',

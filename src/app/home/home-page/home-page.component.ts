@@ -12,6 +12,11 @@ export class HomePageComponent implements OnInit {
 
   user: any;
   isCollapsed = false;
+  sections: { [key: string]: boolean } = {
+    consultas: true,
+    auditoria: true,
+    solicitacoes: true,
+  };
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -52,5 +57,14 @@ export class HomePageComponent implements OnInit {
       this.user = response;
       console.log(response);
     });
+  }
+
+  openModal(type: string): void {
+    console.log(`Abrindo modal para: ${type}`);
+    // Aqui você pode implementar a lógica para abrir o modal com base no tipo
+  }
+
+  toggleSection(section: string): void {
+    this.sections[section] = !this.sections[section];
   }
 }

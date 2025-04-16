@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body { margin: 0; font-family: 'Poppins', sans-serif; }
 
 input {
   flex: 1;
@@ -107,4 +114,30 @@ input {
 
 .toggle-button:hover {
   background-color: var(--primary-hover);
+}
+
+/* Garante que o layout ocupe toda a altura da janela */
+.layout-container {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+/* Garante que o conteúdo ocupe o espaço disponível */
+.content {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* Garante que o footer fique fixo ao final */
+.footer {
+  flex-shrink: 0 !important;
+  height: 60px !important;
+  background-color: #0f2f75 !important;
+  color: white !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
 }

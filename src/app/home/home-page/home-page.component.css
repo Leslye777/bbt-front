@@ -132,3 +132,69 @@
 .content.expanded {
   margin-left: 60px;
 }
+
+/* Estilo para os títulos das seções */
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0c1c38; /* Azul primário */
+  margin-bottom: 10px;
+}
+
+/* Estilo para o separador */
+.section-divider {
+  border: none;
+  height: 2px;
+  background-color: #0c1c38; /* Azul escuro */
+  margin: 10px 0 20px;
+}
+
+/* Container para os cards */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espaçamento entre os cards */
+  justify-content: flex-start; /* Alinha os cards à esquerda */
+}
+
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accordion-item {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Estilo para o cabeçalho das seções */
+.accordion-header {
+  background-color: #0c1c38; /* Azul escuro */
+  color: #ffffff; /* Texto branco */
+  padding: 15px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 8px 8px 0 0; /* Bordas arredondadas no topo */
+  display: flex;
+  align-items: center;
+}
+
+.accordion-header:hover {
+  background-color: #283593; /* Azul mais claro no hover */
+}
+
+/* Estilo para o corpo das seções */
+.accordion-body {
+  padding: 20px;
+  background-color: #f9f9f9; /* Fundo claro */
+  border: 1px solid #ddd; /* Borda leve */
+  border-radius: 0 0 8px 8px; /* Bordas arredondadas na parte inferior */
+}
+
+/* Esconde o corpo quando a seção está fechada */
+.accordion-body.hidden {
+  display: none;
+}

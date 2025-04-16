@@ -5,7 +5,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HomeService } from './home.service';
 import { HomeRoutingModule } from './home-routing.module';
 import { NguCarouselModule } from '@ngu/carousel';
-import {MatCardModule } from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,10 +14,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { UtilsModule } from '../utils/utils.module'; // Importa o UtilsModule
+import { MatExpansionModule } from '@angular/material/expansion'; // Importa o Accordion
+
 @NgModule({
   declarations: [
     HomePageComponent,
-
   ],
   imports: [
     CommonModule,
@@ -33,12 +35,10 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    UtilsModule, // Usa o UtilsModule para cards e outros utilitários
+    MatExpansionModule, // Adiciona o Accordion
   ],
-  exports:[
-
-  ],
-  providers:[HomeService]
-
+  providers: [HomeService],
 })
-export class HomeModule { }
+export class HomeModule {}

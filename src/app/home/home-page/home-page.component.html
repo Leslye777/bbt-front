@@ -1,4 +1,4 @@
-<div class="page" style="display: flex; height: 100vh;">
+<div class="page">
   <!-- Menu lateral -->
   <div class="sidebar" [class.collapsed]="isCollapsed">
     <button class="toggle-button" (click)="toggleSidebar()">
@@ -36,37 +36,130 @@
   </div>
 
   <!-- Conteúdo principal -->
-  <div class="content" [class.expanded]="isCollapsed">
-    <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 20px;">
-      <!-- Coluna 1 -->
-      <div style="display: flex; flex-direction: column; width: 45%;">
-        <div class="board">
-          <span>"Bem-vindo ao Portal da Seguradora"</span>
+  <div class="content">
+    <!-- Acordeão manual -->
+    <div class="accordion">
+      <!-- Seção de Consultas -->
+      <div class="accordion-item">
+        <div class="accordion-header" (click)="toggleSection('consultas')">
+          <h2 class="section-title">Consultas</h2>
         </div>
-        <div class="board">
-          <span>"Acompanhe suas apólices e sinistros"</span>
-        </div>
-        <div class="board">
-          <span>Links Úteis</span>
-        </div>
-        <div class="board-warning">
-          <span>Notificações importantes</span>
+        <div class="accordion-body" [class.hidden]="!sections['consultas']">
+          <hr class="section-divider" />
+          <div class="cards-container">
+            <app-card
+              title="Consulta PEP"
+              subtitle="Consulta de Pessoas Expostas Politicamente"
+              description="Verifique se o cliente é uma pessoa exposta politicamente."
+              icon="search"
+              [details]="['Consultas realizadas: 120', 'Última consulta: 15/04/2025']"
+              (actionClick)="openModal('consulta-pep')">
+            </app-card>
+            <app-card
+              title="Consulta Neoway Renda"
+              subtitle="Estimativa de Renda"
+              description="Obtenha informações sobre a estimativa de renda do cliente."
+              icon="attach_money"
+              [details]="['Consultas realizadas: 80', 'Última consulta: 14/04/2025']"
+              (actionClick)="openModal('consulta-neoway-renda')">
+            </app-card>
+            <app-card
+              title="Consulta Boa Vista"
+              subtitle="Informações de Crédito"
+              description="Acesse informações de crédito do cliente."
+              icon="credit_score"
+              [details]="['Consultas realizadas: 200', 'Última consulta: 13/04/2025']"
+              (actionClick)="openModal('consulta-boa-vista')">
+            </app-card>
+            <app-card
+              title="Consulta Boa Vista Score"
+              subtitle="Pontuação de Crédito"
+              description="Verifique a pontuação de crédito do cliente."
+              icon="bar_chart"
+              [details]="['Consultas realizadas: 150', 'Última consulta: 12/04/2025']"
+              (actionClick)="openModal('consulta-boa-vista-score')">
+            </app-card>
+            <app-card
+              title="Análises Especiais"
+              subtitle="Análise Avançada"
+              description="Realize análises especiais para casos específicos."
+              icon="analytics"
+              [details]="['Consultas realizadas: 50', 'Última consulta: 11/04/2025']"
+              (actionClick)="openModal('analises-especiais')">
+            </app-card>
+            <app-card
+              title="Trabalho Escravo"
+              subtitle="Verificação de Trabalho Escravo"
+              description="Verifique se há indícios de trabalho escravo associados ao cliente."
+              icon="gavel"
+              [details]="['Consultas realizadas: 30', 'Última consulta: 10/04/2025']"
+              (actionClick)="openModal('trabalho-escravo')">
+            </app-card>
+            <app-card
+              title="Consulta ONU"
+              subtitle="Lista de Sanções da ONU"
+              description="Verifique se o cliente está listado em sanções da ONU."
+              icon="public"
+              [details]="['Consultas realizadas: 20', 'Última consulta: 09/04/2025']"
+              (actionClick)="openModal('consulta-onu')">
+            </app-card>
+          </div>
         </div>
       </div>
 
-      <!-- Coluna 2 -->
-      <div style="display: flex; flex-direction: column; width: 45%;">
-        <div class="board">
-          <span>"Relatórios de desempenho disponíveis"</span>
+      <!-- Seção de Auditoria -->
+      <div class="accordion-item">
+        <div class="accordion-header" (click)="toggleSection('auditoria')">
+          <h2 class="section-title">Auditoria</h2>
         </div>
-        <div class="board-warning">
-          <span>Prazo para renovação de apólices</span>
+        <div class="accordion-body" [class.hidden]="!sections['auditoria']">
+          <hr class="section-divider" />
+          <div class="cards-container">
+            <app-card
+              title="Relatórios"
+              subtitle="Desempenho e análises"
+              description="Acesse relatórios detalhados sobre o desempenho das áreas."
+              icon="bar_chart"
+              [details]="['Relatórios disponíveis: 8', 'Última geração: 09/04/2025']"
+              (actionClick)="openModal('relatorios')">
+            </app-card>
+            <app-card
+              title="Histórico de Consultas"
+              subtitle="Acompanhe suas buscas"
+              description="Visualize o histórico completo de consultas realizadas no sistema."
+              icon="history"
+              [details]="['Consultas no mês: 50', 'Total de consultas: 1.200']"
+              (actionClick)="openModal('historico-consultas')">
+            </app-card>
+          </div>
         </div>
-        <div class="board">
-          <span>"Novidades no setor de seguros"</span>
+      </div>
+
+      <!-- Seção de Solicitações -->
+      <div class="accordion-item">
+        <div class="accordion-header" (click)="toggleSection('solicitacoes')">
+          <h2 class="section-title">Solicitações</h2>
         </div>
-        <div class="board">
-          <span>Links Úteis</span>
+        <div class="accordion-body" [class.hidden]="!sections['solicitacoes']">
+          <hr class="section-divider" />
+          <div class="cards-container">
+            <app-card
+              title="Inclusão de Regras"
+              subtitle="Solicitação de Regras"
+              description="Solicite a inclusão de novas regras no sistema."
+              icon="rule"
+              [details]="['Solicitações pendentes: 5', 'Última solicitação: 10/04/2025']"
+              (actionClick)="openModal('inclusao-regras')">
+            </app-card>
+            <app-card
+              title="Solicitação de Enriquecimento"
+              subtitle="Solicitação de Dados"
+              description="Solicite o enriquecimento de dados para análises."
+              icon="add_circle"
+              [details]="['Solicitações realizadas: 10', 'Última solicitação: 09/04/2025']"
+              (actionClick)="openModal('solicitacao-enriquecimento')">
+            </app-card>
+          </div>
         </div>
       </div>
     </div>

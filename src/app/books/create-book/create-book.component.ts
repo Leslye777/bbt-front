@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BookService } from '../books.service';
 import { error } from 'console';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from 'src/app/modal/confirmation-modal/confirmation-modal.component';
 import { Router } from '@angular/router';
+import { ConfirmationModalComponent } from 'src/app/utils/modal/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-create-book',

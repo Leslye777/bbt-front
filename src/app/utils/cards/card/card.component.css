@@ -1,0 +1,99 @@
+.card {
+  border: 2px solid var(--primary-color);
+  border-radius: 12px; /* Bordas arredondadas */
+  padding: 20px;
+  background-color: var(--primary-color); /* Fundo azul */
+  color: var(--secondary-color); /* Texto branco */
+  transition: background-color var(--transition-duration), color var(--transition-duration), box-shadow var(--transition-duration);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+  width: 300px; /* Largura fixa para todos os cards */
+  height: 200px; /* Altura fixa para todos os cards */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer; /* Indica que o card é clicável */
+  font-family: 'Poppins', sans-serif; /* Fonte arredondada e elegante */
+}
+
+.card:hover {
+  background-color: var(--secondary-color); /* Fundo branco no hover */
+  color: var(--primary-color); /* Texto azul no hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Sombra mais forte no hover */
+}
+
+.card * {
+  color: inherit; /* Herda a cor do card */
+  transition: color var(--transition-duration); /* Transição suave para a cor */
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.card-header i {
+  font-size: 36px; /* Ícone maior */
+}
+
+.card-header-text h3 {
+  font-size: 18px; /* Título maior */
+  margin: 0;
+}
+
+.card-header-text p {
+  font-size: 14px; /* Subtítulo maior */
+  margin: 0;
+}
+
+.card-body {
+  font-size: 14px; /* Texto maior */
+  margin-bottom: 10px;
+  overflow: hidden; /* Garante que o conteúdo não ultrapasse o card */
+  text-overflow: ellipsis; /* Adiciona reticências se o texto for muito longo */
+}
+
+.card-body ul {
+  padding-left: 20px;
+  margin: 10px 0 0;
+}
+
+.card-body li {
+  font-size: 12px; /* Detalhes menores */
+}
+
+.card-body li:hover {
+  color: var(--primary-hover); /* Detalhes em azul mais escuro no hover */
+}
+
+.card-footer {
+  text-align: right;
+}
+
+.card-link {
+  color: var(--primary-hover);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+.card-button {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.card-button:hover {
+  background-color: var(--primary-hover);
+}

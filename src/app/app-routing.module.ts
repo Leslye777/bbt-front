@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NumbersOnlyDirective } from './directives/numbers-only/numbers-only.directive';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
@@ -14,11 +13,6 @@ const routes: Routes = [
     path: 'books',canActivate: [],
     loadChildren: () =>
       import('./books/books.module').then((m) => m.BooksModule),
-  },
-  {
-    path: 'loans', canActivate: [],
-    loadChildren: () =>
-      import('./loans/loans.module').then((m) => m.LoansModule),
   },
   {
     path: 'login',

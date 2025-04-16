@@ -2,23 +2,22 @@
 
   <!-- Cabeçalho -->
   <header>
-    <mat-toolbar color="primary" style="background-color: #0f2f75; display: flex; justify-content: flex-end;">
-      <div>
-        <img src="assets/imagem1.png" />
+    <mat-toolbar color="primary" style="background-color: #0c1c38;
+      height: 80px; display: flex; justify-content: flex-start;">
+      <div style="display: flex; align-items: center; margin-left: 40px;">
+        <img src="assets/imagem1.png"/>
       </div>
     </mat-toolbar>
   </header>
 
-  <!-- Conteúdo principal: onde o router-outlet ficará -->
+  <!-- Conteúdo principal -->
   <main class="content">
     <router-outlet></router-outlet>
   </main>
 
   <!-- Rodapé -->
-  <footer>
-    <mat-toolbar style="background-color: #0f2f75;">
-      <!-- Se tiver algo no footer -->
-    </mat-toolbar>
+  <footer class="footer" style="background-color: #0c1c38 !important;">
+    <p>© 2025 LibertyLib. Todos os direitos reservados.</p>
   </footer>
 
 </div>
