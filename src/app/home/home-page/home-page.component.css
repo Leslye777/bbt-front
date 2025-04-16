@@ -171,30 +171,75 @@
 
 /* Estilo para o cabeçalho das seções */
 .accordion-header {
-  background-color: #0c1c38; /* Azul escuro */
-  color: #ffffff; /* Texto branco */
+  background-color: #0c1c38; /* Fundo azul escuro */
+  color: #ffffff !important; /* Texto branco */
   padding: 15px;
   cursor: pointer;
   font-size: 20px;
   font-weight: bold;
-  border-radius: 8px 8px 0 0; /* Bordas arredondadas no topo */
+  border-radius: 8px; /* Bordas arredondadas */
   display: flex;
   align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transição suave */
+}
+
+.accordion-header  * {
+  color: inherit; /* Herda a cor do card */
+  transition: color var(--transition-duration); /* Transição suave para a cor */
 }
 
 .accordion-header:hover {
-  background-color: #283593; /* Azul mais claro no hover */
+  background-color: #ffffff; /* Fundo branco no hover */
+  color: #0c1c38 !important; /* Texto azul no hover */
+  border: 1px solid #0c1c38; /* Adiciona uma borda azul no hover */
 }
 
 /* Estilo para o corpo das seções */
 .accordion-body {
   padding: 20px;
   background-color: #f9f9f9; /* Fundo claro */
-  border: 1px solid #ddd; /* Borda leve */
+  border: 1px solid #ffffff; /* Borda leve */
   border-radius: 0 0 8px 8px; /* Bordas arredondadas na parte inferior */
 }
 
 /* Esconde o corpo quando a seção está fechada */
 .accordion-body.hidden {
   display: none;
+}
+
+/* Seção de Notícias e Atualizações */
+.news-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f9f9f9; /* Fundo claro */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.news-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espaçamento entre os cards */
+}
+
+.news-card {
+  background-color: #ffffff; /* Fundo branco */
+  border: 1px solid #ddd; /* Borda leve */
+  border-radius: 8px;
+  padding: 15px;
+  flex: 1 1 calc(33.333% - 20px); /* Cards responsivos */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+.news-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0c1c38; /* Azul escuro */
+  margin-bottom: 10px;
+}
+
+.news-description {
+  font-size: 14px;
+  color: #555555; /* Cinza escuro */
+  line-height: 1.5;
 }
