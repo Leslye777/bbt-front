@@ -1,46 +1,24 @@
-<div style="height: 90%;">
-  <div class="header">
-    <div class="toolbar">
-      <mat-toolbar style="justify-content: flex-end; display: flex; background-color: #0f2f75!important;">
-        <div>
-          <div>
-            <img src="assets/imagem1.png" >
-          </div>
-        </div>
-  
-      </mat-toolbar>
-    </div>
-  </div>
-  
-  <mat-drawer-container class="example-container" autosize>
-    <mat-drawer  #drawer class="example-sidenav" mode="side">
-      <div class="hamburger-menu">
-          <li><a class="menu__item" routerLink="/home"><i class="material-icons">home</i> Home</a></li>
-          <li><a class="menu__item" routerLink="/books"><i class="material-icons">menu_book</i> Book</a></li>
-          <li *ngIf="!verificaUser()"><a class="menu__item"  routerLink="/books/notification"><i class="material-icons">people</i> User</a></li>
-          <li *ngIf="!verificaUser()"><a class="menu__item" routerLink="/loans/loan"><i class="material-icons">book</i> Loan/Return</a></li>
-          <li><a class="menu__item" routerLink="/loans"><i class="material-icons">event_note</i>
-            <span *ngIf="verificaUser()"> My Loans</span>
-            <span *ngIf="!verificaUser()"> Loans</span>
-          </a></li>
-          <li><a class="menu__item" href="/login" (click)="exit()"><i class="material-icons">exit_to_app</i> Log off</a></li>
+<div class="layout-container">
+
+  <!-- Cabeçalho -->
+  <header>
+    <mat-toolbar color="primary" style="background-color: #0f2f75; display: flex; justify-content: flex-end;">
+      <div>
+        <img src="assets/imagem1.png" />
       </div>
-    </mat-drawer>
-  
-    <div  class="example-sidenav-content" >
-      <button *ngIf="lastSegment!=='login'" mat-icon-button (click)="drawer.toggle()" style="border: none;">
-        <mat-icon>{{drawer.opened ? 'close' : 'menu'}}</mat-icon>
-      </button>
-      <div class="page-content">
-        <router-outlet></router-outlet>
-  
-      </div>
-  
-    </div>
-  
-  </mat-drawer-container>
-  <!-- <mat-toolbar class="footer" color="primary">
-  
-  </mat-toolbar> -->
-  
+    </mat-toolbar>
+  </header>
+
+  <!-- Conteúdo principal: onde o router-outlet ficará -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Rodapé -->
+  <footer>
+    <mat-toolbar style="background-color: #0f2f75;">
+      <!-- Se tiver algo no footer -->
+    </mat-toolbar>
+  </footer>
+
 </div>

@@ -1,48 +1,32 @@
-.header {
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Container geral do layout (header, conteúdo, footer) */
+.layout-container {
   display: flex;
   flex-direction: column;
-  overflow: visible;
+  min-height: 99.6vh; /* garante que ocupe a altura total da janela */
 }
-
-.menu__item {
-  display: block;
-  padding: 12px;
-  color: #3f51b5;
-  font-family: "Roboto", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  text-decoration: none;
-  transition-duration: 0.25s;
-  list-style: inside;
-}
-.menu__item:hover {
-  background-color: #0c1c38;
-  color: white;
-}
-
-li {
-  list-style: none;
-}
-
-/* .footer {
-  position: static;
-  bottom: 0;
-  width: 100%;
-} */
 
 img {
   object-fit: contain;
-  width: 100px;
-  height: 61px;
+  width: 110px;
+  height: 100px;
+
 }
 
-.logo-header {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  border-radius: 40px;
-  padding: 5px;
+.content {
+  flex: 1; /* empurra o footer lá pra baixo */
+  display: flex; /* se precisar que o router-outlet seja flex */
+  flex-direction: column;
 }
 
-.example-container {
-  height: 95%;
+footer {
+  flex-shrink: 0; /* evita que o footer seja comprimido quando o conteúdo é grande */
+  z-index: 9999;  /* para ficar acima do conteúdo (caso precise) */
+  height: 60px;   /* defina a altura que desejar */
+  bottom: 0;      /* colado na borda inferior */
 }

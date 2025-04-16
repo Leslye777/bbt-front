@@ -1,9 +1,7 @@
-import { HomeService } from './../home.service';
-import { Component, OnInit, ElementRef, Renderer2, IterableDiffers, ChangeDetectorRef, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { NguCarousel, NguCarouselConfig } from '@ngu/carousel';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SessionStorageService } from 'angular-web-storage';
-
+import { HomeService } from './../home.service';
 
 @Component({
   selector: 'app-home-page',
@@ -12,60 +10,47 @@ import { SessionStorageService } from 'angular-web-storage';
 })
 export class HomePageComponent implements OnInit {
 
-
-  name = 'Angular';
-  slideNo = 0;
-  withAnim = true;
-  resetAnim = true;
-
   user: any;
+  isCollapsed = false;
 
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private sanitizer: DomSanitizer,
+    private session: SessionStorageService,
+    private homeService: HomeService
+  ) { }
 
-  @ViewChild('myCarousel')
-  myCarousel!: NguCarousel<any>;
-  carouselConfig: NguCarouselConfig = {
-    grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
-    load: 3,
-    interval: {timing: 4000, initialDelay: 1000},
-    loop: true,
-    touch: true,
-    velocity: 0.2
-  }
-  carouselItems = [1, 2, 3];
-
-  constructor(private cdr: ChangeDetectorRef, private sanitizer: DomSanitizer,
-    private session: SessionStorageService, private homeService: HomeService) {}
   ngOnInit(): void {
     this.getData();
-
-
-
   }
 
   ngAfterViewInit() {
     this.cdr.detectChanges();
   }
 
-  reset() {
-    this.myCarousel.reset(!this.resetAnim);
+  // Retorna true para o exemplo; você pode implementar a lógica correta conforme sua necessidade.
+  public verificaUser(): boolean {
+    return true;
   }
 
-  moveTo(slide: number) {
-    this.myCarousel.moveTo(slide, !this.withAnim);
+  // Método de saída, removendo o token da sessão
+  exit(): void {
+    this.session.remove('token');
+    console.log("saiu");
   }
 
-  sanitizeImagePath(imagePath: string): SafeUrl {
-    return this.sanitizer.bypassSecurityTrustUrl(imagePath);
+  toggleSidebar() {
+    this.isCollapsed = !this.isCollapsed;
   }
 
-  public getData(){
-    this.homeService.getUserByEmail(this.session.get('email')).subscribe((response) => {
+  // Recupera os dados do usuário
+  public getData(): void {
+    const email = this.session.get('email');
+    console.log(email);
+    console.log(this.session.get('role'));
+    this.homeService.getUserByEmail(email).subscribe(response => {
       this.user = response;
       console.log(response);
     });
-    console.log(this.session.get('email'))
-    console.log(this.session.get('role'))
   }
-
-
 }

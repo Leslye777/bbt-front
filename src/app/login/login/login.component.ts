@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../login.service';
 
 @Component({
     selector: 'app-login',
@@ -10,14 +11,16 @@ export class LoginComponent implements OnInit {
     username = '';
     password = '';
     images = [
-        'assets/gf1.jpg',
+        'assets/gf3.png',
         'assets/gf2.jpg',
-        'assets/gf3.png'
+        'assets/gf1.jpg',
     ];
     currentIndex = 0;
     prevIndex = 0; // Adicionamos prevIndex
 
-    constructor(private router: Router) { }
+    invalidLogin = true;
+
+    constructor(private router: Router, private loginService: LoginService) { }
 
     ngOnInit(): void {
         this.startCarousel();
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
     startCarousel(): void {
         setInterval(() => {
             this.nextSlide();
-        }, 4000);
+        }, 6000);
     }
 
     nextSlide(): void {
@@ -48,9 +51,18 @@ export class LoginComponent implements OnInit {
     }
 
     onSubmit(): void {
-        console.log('Usuário:', this.username);
-        console.log('Senha:', this.password);
-
-        this.router.navigate(['/home'])
+      // Chama o service para validar as credenciais
+      this.loginService.login(this.username, this.password).subscribe(success => {
+        if (success) {
+          // Se válido, redireciona para a home
+          console.log("entrando aqui")
+          console.log(success)
+          this.invalidLogin = false;
+          this.router.navigate(['/home']);
+        } else {
+          // Se inválido, seta a flag para true
+          this.invalidLogin = true;
+        }
+      });
     }
 }

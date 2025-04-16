@@ -1,0 +1,95 @@
+@import '~@angular/material/theming';
+
+// Inclui os estilos básicos do Material.
+@include mat-core();
+
+/*
+  Definindo uma paleta customizada para a cor primária.
+  Aqui você cria um mapa com os tons que desejar.
+  Você pode definir várias escalas (50, 100, …, 900, A100, etc.),
+  mas o essencial é definir o tom 500, que será usado por padrão.
+*/
+$custom-primary-palette: (
+  50: #e1e2e5,
+  100: #b3b5ba,
+  200: #84889e,
+  300: #565c83,
+  400: #353c6d,
+  500: #0c1c38, // sua cor primária
+  600: #0b1932,
+  700: #09142c,
+  800: #071028,
+  900: #040a1d,
+  A100: #7d9eff,
+  A200: #4c7eff,
+  A400: #1c5cff,
+  A700: #005fff,
+  // Define os contrastes: para os tons escuros, o texto deve ser branco.
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: white,
+    400: white,
+    500: white,  // textos sobre o 500 serão brancos
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: white,
+    A400: white,
+    A700: white
+  )
+);
+
+/*
+  Definindo a paleta accent (secundária) usando sua cor #0f2f75.
+  É necessário definir os principais tons; aqui usamos valores aproximados.
+*/
+$custom-accent-palette: (
+  50: #e0e2e5,
+  100: #b3b6ba,
+  200: #858a9e,
+  300: #576e83,
+  400: #36526d,
+  500: #0f2f75, // sua cor secundária
+  600: #0e2a69,
+  700: #0d2560,
+  800: #0c2056,
+  900: #0a1744,
+  A100: #8a9cff,
+  A200: #576bff,
+  A400: #2438ff,
+  A700: #002dff,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: white,
+    400: white,
+    500: white, // textos sobre o 500 serão brancos
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: black,
+    A200: white,
+    A400: white,
+    A700: white
+  )
+);
+
+// Para o warn (alertas), podemos usar a paleta padrão do Material.
+$custom-warn: mat-palette($mat-red);
+
+// Cria o tema customizado como um tema "light".
+// Aqui, usamos as funções do Material para criar uma paleta a partir dos mapas definidos.
+$custom-theme: mat-light-theme(
+  mat-define-palette($custom-primary-palette, 500),
+  mat-define-palette($custom-accent-palette, 500),
+  $custom-warn
+);
+
+// Aplica o tema nos componentes do Angular Material.
+@include angular-material-theme($custom-theme);

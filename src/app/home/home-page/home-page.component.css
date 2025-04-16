@@ -1,117 +1,134 @@
-/* Add application styles & imports to this file! */
-.item {
-  padding: 10px;
-  box-sizing: border-box;
-}
-
-.tile {
-  min-height: 200px;
-  background-color: #ccc;
-  background-size: cover !important;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.leftRs {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  z-index: 1;
-}
-
-.rightRs {
-  position: absolute;
-  margin: auto;
-  top: 0;
-  bottom: 0;
-  width: 50px;
-  height: 50px;
-  box-shadow: 1px 2px 10px -1px rgba(0, 0, 0, 0.3);
-  border-radius: 999px;
-  right: 0;
-}
-
-.myPoint {
-  list-style-type: none;
-  text-align: center;
+/* Estilo do menu já existente */
+.menu__item {
+  display: block;
   padding: 12px;
-  margin: 0;
-  white-space: nowrap;
-  overflow: auto;
-  box-sizing: border-box;
-}
-.myPoint li {
-  display: inline-block;
-  border-radius: 50%;
-  border: 2px solid rgba(0, 0, 0, 0.55);
-  padding: 4px;
-  margin: 0 3px;
-  transition-timing-function: cubic-bezier(0.17, 0.67, 0.83, 0.67);
-  transition: 0.4s;
-}
-.myPoint li.active {
-  background: #6b6b6b;
-  transform: scale(1.2);
+  color: #ffffff; /* Texto branco */
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #0c1c38; /* Azul primário */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.page {
-  z-index: 9999999;
-  position: relative;
-  max-width: 600px;
-  align-items: center;
-  justify-content: center;
+.menu__item:hover {
+  background-color: #283593; /* Azul mais escuro no hover */
+  color: #ffffff; /* Texto branco no hover */
 }
 
+/* Estilo adicional para os cards */
 .board {
-  text-align: center;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  line-height: -2px;
-  border: 2px solid #3f51b5;
+  border: 2px solid #0c1c38; /* Azul primário */
   border-radius: 10px;
   margin-top: 10px;
-  min-height: 45px;
+  padding: 15px;
+  text-align: center;
+  background-color: #ffffff; /* Fundo branco */
+  color: #0c1c38; /* Texto azul */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .board:hover {
-  border: 1px solid #3f51b5;
-  border-radius: 10px;
-  margin-top: 10px;
-  background-color: #3f51b5;
-  cursor: pointer;
-  color: #fff;
+  background-color: #0c1c38; /* Fundo azul no hover */
+  color: #ffffff; /* Texto branco no hover */
 }
 
 .board-warning {
+  border: 2px solid #c00a0a; /* Vermelho para avisos */
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 15px;
   text-align: center;
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-
-  line-height: -2px;
-  border: 2px solid #c00a0a;
-  border-radius: 10px;
-  margin-top: 10px;
-  min-height: 45px;
+  background-color: #ffffff; /* Fundo branco */
+  color: #c00a0a; /* Texto vermelho */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
 .board-warning:hover {
-  border: 1px solid #c00a0a;
-  border-radius: 10px;
-  margin-top: 10px;
-  background-color: #c00a0a;
+  background-color: #c00a0a; /* Fundo vermelho no hover */
+  color: #ffffff; /* Texto branco no hover */
+}
+
+/* Página principal */
+.page {
+  display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #0c1c38; /* Azul primário */
+  color: #ffffff; /* Texto branco */
+  height: 100vh;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 15px;
+}
+
+.sidebar .menu__item {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar .menu__item i {
+  margin-right: 10px;
+}
+
+.sidebar .menu__item:hover {
+  background-color: white;
+  color: #0c1c38; /* Azul mais escuro no hover */
+}
+
+/* Botão de alternância */
+.toggle-button {
+  position: absolute;
+  top: 50%; /* Centraliza verticalmente */
+  right: -15px; /* Posiciona o botão fora do menu */
+  transform: translateY(-50%);
+  background: #0c1c38; /* Azul primário */
+  border: 2px solid #ffffff; /* Borda branca */
+  border-radius: 50%;
+  color: #ffffff; /* Texto branco */
+  font-size: 24px;
   cursor: pointer;
-  color: #fff;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  z-index: 10; /* Garante que o botão fique acima do conteúdo */
+}
+
+.toggle-button:hover {
+  background-color: #283593; /* Azul mais escuro no hover */
+}
+
+.sidebar.collapsed .toggle-button {
+  right: -15px; /* Mantém a posição do botão ao recolher */
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.content.expanded {
+  margin-left: 60px;
 }

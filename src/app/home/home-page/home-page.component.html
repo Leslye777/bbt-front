@@ -1,65 +1,74 @@
-<div class="page">
-  <h1 style="text-align: center;">Olá {{user?.firstName}} {{user?.lastName}} </h1>
-  <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="[first, second, third]">
-    <div *nguCarouselDef="let item;" class="item">
-      <div class="tile">
-        <ng-container *ngTemplateOutlet="item"></ng-container>
+<div class="page" style="display: flex; height: 100vh;">
+  <!-- Menu lateral -->
+  <div class="sidebar" [class.collapsed]="isCollapsed">
+    <button class="toggle-button" (click)="toggleSidebar()">
+      <i class="material-icons">
+        {{ isCollapsed ? 'chevron_right' : 'chevron_left' }}
+      </i>
+    </button>
+    <ul>
+      <li>
+        <a class="menu__item" routerLink="/home">
+          <i class="material-icons">home</i> <span *ngIf="!isCollapsed">Home</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" routerLink="/seguros">
+          <i class="material-icons">shield</i> <span *ngIf="!isCollapsed">Seguros</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" routerLink="/clientes">
+          <i class="material-icons">people</i> <span *ngIf="!isCollapsed">Clientes</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" routerLink="/relatorios">
+          <i class="material-icons">bar_chart</i> <span *ngIf="!isCollapsed">Relatórios</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" href="/login" (click)="exit()">
+          <i class="material-icons">exit_to_app</i> <span *ngIf="!isCollapsed">Sair</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="content" [class.expanded]="isCollapsed">
+    <div style="display: flex; justify-content: space-between; width: 100%; margin-top: 20px;">
+      <!-- Coluna 1 -->
+      <div style="display: flex; flex-direction: column; width: 45%;">
+        <div class="board">
+          <span>"Bem-vindo ao Portal da Seguradora"</span>
+        </div>
+        <div class="board">
+          <span>"Acompanhe suas apólices e sinistros"</span>
+        </div>
+        <div class="board">
+          <span>Links Úteis</span>
+        </div>
+        <div class="board-warning">
+          <span>Notificações importantes</span>
+        </div>
+      </div>
+
+      <!-- Coluna 2 -->
+      <div style="display: flex; flex-direction: column; width: 45%;">
+        <div class="board">
+          <span>"Relatórios de desempenho disponíveis"</span>
+        </div>
+        <div class="board-warning">
+          <span>Prazo para renovação de apólices</span>
+        </div>
+        <div class="board">
+          <span>"Novidades no setor de seguros"</span>
+        </div>
+        <div class="board">
+          <span>Links Úteis</span>
+        </div>
       </div>
     </div>
-
-    <ng-template #first>
-      <img [src]="sanitizeImagePath('../../../assets/sistemas_info_resized.png')">
-    </ng-template>
-
-    <ng-template #second>
-      <img [src]="sanitizeImagePath('../../../assets/2023_07_04_0af_Kleki.png')">
-    </ng-template>
-
-    <ng-template #third>
-      <img [src]="sanitizeImagePath('../../../assets/Screenshot 2023-07-04 at 06-30-31 UFV – Universidade Federal de Viçosa.png')">
-    </ng-template>
-
-    <button NguCarouselNext class="rightRs">></button>
-    <button NguCarouselPrev class="leftRs"><</button>
-    <ul class="myPoint" NguCarouselPoint>
-      <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>
-    </ul>
-  </ngu-carousel>
-
-  <hr>
-  <h1>Bulletin Board</h1>
-  <div style="display: flex; flex-direction: column; width: 45%; float: right;">
-    <div class="board">
-      <a>"Biblioteca pública oferece acesso gratuito a e-books para incentivar a leitura digital""</a>
-    </div>
-
-    <div class="board">
-      <a>"Autor de best-seller anuncia novo romance para o final do ano"</a>
-    </div>
-    <div class="board">
-      <a>Links Uteis</a>
-    </div>
-    <div class="board-warning">
-      <a>Você possui pendencias</a>
-    </div>
   </div>
-  <div style="display: flex; flex-direction: column; width: 45%;">
-    <div class="board">
-      <a>"Biblioteca pública oferece acesso gratuito a e-books para incentivar a leitura digital""</a>
-    </div>
-    <div class="board-warning">
-      <a>Data final para entrega de documentos </a>
-    </div>
-
-    <div class="board">
-      <a>"Autor de best-seller anuncia novo romance para o final do ano"</a>
-    </div>
-    <div class="board">
-      <a>Links Uteis</a>
-    </div>
-
-
-  </div>
-
-
 </div>
