@@ -1,58 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { LoginService } from '../login.service';
-import { SessionStorageService } from 'angular-web-storage';
-import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+    username = '';
+    password = '';
+    images = [
+        'assets/gf1.jpg',
+        'assets/gf2.jpg',
+        'assets/gf3.png'
+    ];
+    currentIndex = 0;
+    prevIndex = 0; // Adicionamos prevIndex
 
-  constructor(private fb: FormBuilder, private router: Router,  private loginService: LoginService,
-    private session: SessionStorageService, private jwtHelper: JwtHelperService) { }
+    constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-
-  login() {
-    if (this.loginForm.invalid) {
-      // Exibe mensagens de erro nos campos inválidos
-      this.loginForm.markAllAsTouched();
-      return;
+    ngOnInit(): void {
+        this.startCarousel();
     }
 
-    const username = this.loginForm.get('username')?.value;
-    const password = this.loginForm.get('password')?.value;
+    startCarousel(): void {
+        setInterval(() => {
+            this.nextSlide();
+        }, 4000);
+    }
 
-    this.loginService.login(username, password).subscribe(
-      (response: any) => {
-        // Lida com a resposta do servidor
-        console.log(response);
-        this.session.set('token', response.access_token);
+    nextSlide(): void {
+        this.prevIndex = this.currentIndex;
+        this.currentIndex = (this.currentIndex + 1) % this.images.length;
+        this.updateCarouselClasses();
+    }
 
-        const tokenInfo = this.jwtHelper.decodeToken(response.access_token);
-        console.log(tokenInfo); // Exibe as informações do token no console
-        this.session.set('email', tokenInfo.user_name);
-        this.session.set('role', tokenInfo.authorities[0]);
+    updateCarouselClasses(): void {
+        const items = document.querySelectorAll('.carousel-item');
+        items.forEach((item, index) => {
+            item.classList.remove('active', 'prev');
+            if (index === this.currentIndex) {
+                item.classList.add('active');
+            } else if (index === this.prevIndex) {
+                item.classList.add('prev');
+            }
+        });
+    }
 
+    onSubmit(): void {
+        console.log('Usuário:', this.username);
+        console.log('Senha:', this.password);
 
-        const routeUrl = '/home';
-        this.router.navigateByUrl(routeUrl, { skipLocationChange: false });
-      },
-      (error) => {
-        this.loginForm.setErrors({ loginFailed: true });
-        console.error(error);
-      }
-    );
-  }
-
+        this.router.navigate(['/home'])
+    }
 }

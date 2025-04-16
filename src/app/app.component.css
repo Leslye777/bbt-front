@@ -1,6 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
+  overflow: visible;
 }
 
 .menu__item {
@@ -15,7 +16,7 @@
   list-style: inside;
 }
 .menu__item:hover {
-  background-color: #5763e6;
+  background-color: #0c1c38;
   color: white;
 }
 
@@ -23,15 +24,11 @@ li {
   list-style: none;
 }
 
-.footer {
-  position: fixed;
+/* .footer {
+  position: static;
   bottom: 0;
   width: 100%;
-}
-.page-content {
-  display: flex;
-  justify-content: center;
-}
+} */
 
 img {
   object-fit: contain;
@@ -47,5 +44,5 @@ img {
 }
 
 .example-container {
-  height: 80%;
+  height: 95%;
 }

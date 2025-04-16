@@ -7,16 +7,16 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
 
   {
-    path: 'home',canActivate: [AuthGuard],
+    path: 'home',canActivate: [],
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path: 'books',canActivate: [AuthGuard],
+    path: 'books',canActivate: [],
     loadChildren: () =>
       import('./books/books.module').then((m) => m.BooksModule),
   },
   {
-    path: 'loans', canActivate: [AuthGuard],
+    path: 'loans', canActivate: [],
     loadChildren: () =>
       import('./loans/loans.module').then((m) => m.LoansModule),
   },
