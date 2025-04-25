@@ -16,10 +16,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { UtilsModule } from '../utils/utils.module'; // Importa o UtilsModule
 import { MatExpansionModule } from '@angular/material/expansion'; // Importa o Accordion
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
     HomePageComponent,
+    HistoryComponent,
   ],
   imports: [
     CommonModule,

@@ -4,6 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,12 +12,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AuthGuard } from './auth.guard';
 import { UtilsModule } from './utils/utils.module'; // Importa o UtilsModule
-import { ConfirmationModalComponent } from './utils/modal/confirmation-modal/confirmation-modal.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfirmationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +27,7 @@ import { ConfirmationModalComponent } from './utils/modal/confirmation-modal/con
     MatSidenavModule,
     MatDialogModule,
     UtilsModule, // Usa o UtilsModule para modais e outros utilitários
+    FormsModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent],

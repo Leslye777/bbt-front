@@ -78,7 +78,7 @@
               description="Verifique se o cliente é uma pessoa exposta politicamente."
               icon="search"
               [details]="['Consultas realizadas: 120', 'Última consulta: 15/04/2025']"
-              (actionClick)="openModal('consulta-pep')">
+              (actionClick)="openModal('consulta-pep', 'Consulta PEP')">
             </app-card>
             <app-card
               title="Consulta Neoway Renda"
@@ -86,7 +86,7 @@
               description="Obtenha informações sobre a estimativa de renda do cliente."
               icon="attach_money"
               [details]="['Consultas realizadas: 80', 'Última consulta: 14/04/2025']"
-              (actionClick)="openModal('consulta-neoway-renda')">
+              (actionClick)="openModal('neoway-renda', 'Consulta Neoway Renda')">
             </app-card>
             <app-card
               title="Consulta Boa Vista"
@@ -94,7 +94,7 @@
               description="Acesse informações de crédito do cliente."
               icon="credit_score"
               [details]="['Consultas realizadas: 200', 'Última consulta: 13/04/2025']"
-              (actionClick)="openModal('consulta-boa-vista')">
+              (actionClick)="openModal('boa-vista', 'Consulta Boa Vista')">
             </app-card>
             <app-card
               title="Consulta Boa Vista Score"
@@ -102,7 +102,7 @@
               description="Verifique a pontuação de crédito do cliente."
               icon="bar_chart"
               [details]="['Consultas realizadas: 150', 'Última consulta: 12/04/2025']"
-              (actionClick)="openModal('consulta-boa-vista-score')">
+              (actionClick)="openModal('boa-vista-score', 'Consulta Boa Vista Score')">
             </app-card>
             <app-card
               title="Análises Especiais"
@@ -110,7 +110,7 @@
               description="Realize análises especiais para casos específicos."
               icon="analytics"
               [details]="['Consultas realizadas: 50', 'Última consulta: 11/04/2025']"
-              (actionClick)="openModal('analises-especiais')">
+              (actionClick)="openModal('analises-especiais', 'Análises Especiais')">
             </app-card>
             <app-card
               title="Trabalho Escravo"
@@ -118,7 +118,7 @@
               description="Verifique se há indícios de trabalho escravo associados ao cliente."
               icon="gavel"
               [details]="['Consultas realizadas: 30', 'Última consulta: 10/04/2025']"
-              (actionClick)="openModal('trabalho-escravo')">
+              (actionClick)="openModal('trabalho-escravo', 'Trabalho Escravo')">
             </app-card>
             <app-card
               title="Consulta ONU"
@@ -126,7 +126,15 @@
               description="Verifique se o cliente está listado em sanções da ONU."
               icon="public"
               [details]="['Consultas realizadas: 20', 'Última consulta: 09/04/2025']"
-              (actionClick)="openModal('consulta-onu')">
+              (actionClick)="openModal('consulta-onu', 'Consulta ONU')">
+            </app-card>
+            <app-card
+              title="Consulta Neoway Cadastral"
+              subtitle="Consulta de Informações Cadastrais"
+              description="Realize consultas cadastrais detalhadas com base no CPF ou CNPJ."
+              icon="assignment"
+              [details]="['Última consulta: 10/04/2025']"
+              (actionClick)="openModal('neoway-cadastral', 'Consulta Neoway Cadastral')">
             </app-card>
           </div>
         </div>
@@ -146,7 +154,7 @@
               description="Acesse relatórios detalhados sobre o desempenho das áreas."
               icon="bar_chart"
               [details]="['Relatórios disponíveis: 8', 'Última geração: 09/04/2025']"
-              (actionClick)="openModal('relatorios')">
+              (actionClick)="openModal('relatorios', 'relatorios')">
             </app-card>
             <app-card
               title="Histórico de Consultas"
@@ -154,7 +162,7 @@
               description="Visualize o histórico completo de consultas realizadas no sistema."
               icon="history"
               [details]="['Consultas no mês: 50', 'Total de consultas: 1.200']"
-              (actionClick)="openModal('historico-consultas')">
+              (actionClick)="openModal('historico-consultas', 'relatorios')">
             </app-card>
           </div>
         </div>
@@ -174,7 +182,7 @@
               description="Solicite a inclusão de novas regras no sistema."
               icon="rule"
               [details]="['Solicitações pendentes: 5', 'Última solicitação: 10/04/2025']"
-              (actionClick)="openModal('inclusao-regras')">
+              (actionClick)="openModal('inclusao-regras', 'relatorios')">
             </app-card>
             <app-card
               title="Solicitação de Enriquecimento"
@@ -182,7 +190,7 @@
               description="Solicite o enriquecimento de dados para análises."
               icon="add_circle"
               [details]="['Solicitações realizadas: 10', 'Última solicitação: 09/04/2025']"
-              (actionClick)="openModal('solicitacao-enriquecimento')">
+              (actionClick)="openModal('solicitacao-enriquecimento', 'relatorios')">
             </app-card>
           </div>
         </div>
@@ -190,4 +198,13 @@
 
     </div>
   </div>
+  <div *ngIf="showModal">
+    <app-generic-modal
+      [modalType]="modalType"
+      [modalTitle]="modalTitle"
+      (close)="closeModal()">
+    </app-generic-modal>
+  </div>
+
 </div>
+

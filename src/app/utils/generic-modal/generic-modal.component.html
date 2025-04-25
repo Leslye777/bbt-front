@@ -1,0 +1,71 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <!-- Botão de Fechar no canto superior direito -->
+    <button class="close-button" (click)="closeModal()">×</button>
+
+    <h2 class="modal-title">{{ modalTitle }}</h2>
+    <hr class="section-divider" />
+
+    <!-- Conteúdo do Modal -->
+    <ng-container [ngSwitch]="modalType">
+      <!-- Conteúdo para Consulta Neoway Cadastral -->
+      <div *ngSwitchCase="'neoway-cadastral'">
+        <form class="modal-form">
+          <div class="form-group">
+            <label for="ramo">Ramo</label>
+            <select id="ramo" class="form-control">
+              <option value="vida">Vida</option>
+              <option value="previdencia">Previdência</option>
+              <option value="auto">Auto</option>
+              <option value="residencial">Residencial</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="processo">Processo</label>
+            <select id="processo" class="form-control">
+              <option value="analise">Análise</option>
+              <option value="validacao">Validação</option>
+              <option value="consulta">Consulta</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div>
+              <input type="radio" id="cpf" name="tipoDocumento" value="cpf" checked />
+              <label for="cpf">CPF</label>
+            </div>
+            <div>
+              <input type="radio" id="cnpj" name="tipoDocumento" value="cnpj" />
+              <label for="cnpj">CNPJ</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cpfCnpj">Documento</label>
+            <input id="cpfCnpj" type="text" class="form-control" style="width: 95%;" placeholder="Digite o CPF ou CNPJ" />
+          </div>
+
+          <button type="button" class="btn btn-primary" (click)="simulatePackCadastral()">Consultar</button>
+        </form>
+
+        <!-- Resultado Simulado -->
+        <div *ngIf="loading" class="loading">Carregando...</div>
+        <div *ngIf="result" class="result">
+          <h3>Resultado da Consulta</h3>
+          <p><strong>ID:</strong> <a>{{ result.id }}</a></p>
+          <p><strong>Nome/Razão Social:</strong> {{ result.nome }}</p>
+          <p><strong>Data de Nascimento:</strong> {{ result.dataNascimento }}</p>
+          <p><strong>CPF/CNPJ:</strong> {{ result.cpfCnpj }}</p>
+          <p><strong>Renda Estimada:</strong> {{ result.rendaEstimada }}</p>
+          <p><strong>Status:</strong> {{ result.status }}</p>
+          <p><strong>Fonte:</strong> {{ result.fonte }}</p>
+          <p><strong>Data:</strong> {{ result.data }}</p>
+        </div>
+      </div>
+
+      <!-- Conteúdo padrão para outros cards -->
+      <div *ngSwitchDefault>
+        <p>Conteúdo não configurado para este card.</p>
+      </div>
+    </ng-container>
+  </div>
+</div>

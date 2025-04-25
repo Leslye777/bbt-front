@@ -1,0 +1,192 @@
+.page {
+  display: flex;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0c1c38;
+}
+
+.section-divider {
+  border: none;
+  height: 2px;
+  background-color: #0c1c38;
+  margin: 10px 0 20px;
+}
+
+.filter-form {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas iguais */
+  gap: 20px; /* Espaçamento uniforme entre os campos */
+  margin-bottom: 20px;
+  align-items: center; /* Alinha os campos e o botão verticalmente */
+}
+
+.form-group {
+  width: 75%;
+  display: flex;
+  flex-direction: column; /* Alinha o label acima do input */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th, .table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #0c1c38;
+  color: white;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  background-color: #fff;
+  color: #333;
+  appearance: none; /* Remove o estilo padrão do navegador */
+}
+
+.form-control:focus {
+  border-color: #0c1c38; /* Cor de borda ao focar */
+  outline: none;
+  box-shadow: 0 0 5px rgba(12, 28, 56, 0.5); /* Efeito de foco */
+}
+
+select.form-control {
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%230c1c38' d='M2 0L0 2h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  width: 105%;
+}
+.btn-primary {
+  background-color: #0c1c38;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 50%;
+}
+
+.btn-primary:hover {
+  background-color: #283593;
+}
+
+.filter-button {
+  grid-column: 3 / 4; /* Posiciona o botão na mesma coluna do campo "Usuário" */
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+  align-items: flex-end; /* Alinha o botão na parte inferior do campo */
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #0c1c38; /* Azul primário */
+  color: #ffffff; /* Texto branco */
+  height: 100vh;
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 15px;
+}
+
+.sidebar .menu__item {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar .menu__item i {
+  margin-right: 10px;
+}
+
+.sidebar .menu__item:hover {
+  background-color: white;
+  color: #0c1c38; /* Azul mais escuro no hover */
+}
+
+/* Botão de alternância */
+.toggle-button {
+  position: absolute;
+  top: 50%; /* Centraliza verticalmente */
+  right: -15px; /* Posiciona o botão fora do menu */
+  transform: translateY(-50%);
+  background: #0c1c38; /* Azul primário */
+  border: 2px solid #ffffff; /* Borda branca */
+  border-radius: 50%;
+  color: #ffffff; /* Texto branco */
+  font-size: 24px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  z-index: 10; /* Garante que o botão fique acima do conteúdo */
+}
+
+.toggle-button:hover {
+  background-color: #283593; /* Azul mais escuro no hover */
+}
+
+.sidebar.collapsed .toggle-button {
+  right: -15px; /* Mantém a posição do botão ao recolher */
+}
+
+/* Estilo do menu já existente */
+.menu__item {
+  display: block;
+  padding: 12px;
+  color: #ffffff; /* Texto branco */
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #0c1c38; /* Azul primário */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu__item:hover {
+  background-color: #283593; /* Azul mais escuro no hover */
+  color: #ffffff; /* Texto branco no hover */
+}
+
+.content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}

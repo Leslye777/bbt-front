@@ -11,10 +11,9 @@ export class CardComponent {
   @Input() description!: string;
   @Input() icon!: string;
   @Input() details?: string[];
-  @Input() link!: string;
   @Output() actionClick = new EventEmitter<void>();
 
   onActionClick() {
-    this.actionClick.emit();
+    this.actionClick.emit(); // Emite o evento quando o card é clicado
   }
 }

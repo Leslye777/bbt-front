@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SessionStorageService } from 'angular-web-storage';
 import { HomeService } from './../home.service';
+import { GenericModalComponent } from 'src/app/utils/generic-modal/generic-modal.component';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home-page',
@@ -18,11 +20,16 @@ export class HomePageComponent implements OnInit {
     solicitacoes: true,
   };
 
+  showModal = false;
+  modalType = '';
+  modalTitle = '';
+
   constructor(
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
     private session: SessionStorageService,
-    private homeService: HomeService
+    private homeService: HomeService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -59,9 +66,22 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  openModal(type: string): void {
-    console.log(`Abrindo modal para: ${type}`);
-    // Aqui você pode implementar a lógica para abrir o modal com base no tipo
+  openModal(type: string, title: string): void {
+    if(type === 'historico-consultas') {
+      console.log('navegou');
+      this.router.navigate(['home/historico']);
+      return;
+    }
+
+    this.modalType = type;
+    this.modalTitle = title;
+    this.showModal = true; // Define `showModal` como `true` para exibir o modal
+  }
+
+  closeModal(): void {
+    this.showModal = false; // Define `showModal` como `false` para ocultar o modal
+    this.modalType = '';
+    this.modalTitle = '';
   }
 
   toggleSection(section: string): void {
