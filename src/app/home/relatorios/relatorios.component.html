@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Relatórios</h3>
+  </div>
+  <div class="card-body">
+    <div class="chart-container">
+      <!-- Gráfico de Pizza -->
+      <div class="chart-item">
+        <h4>Requisições por Colaborador</h4>
+        <ngx-charts-pie-chart
+          [results]="pieChartData"
+          [legend]="true"
+          [labels]="true"
+          [doughnut]="false"
+          [explodeSlices]="false"
+          [gradient]="true">
+        </ngx-charts-pie-chart>
+      </div>
+
+      <!-- Gráfico de Barras -->
+      <div class="chart-item">
+        <h4>Comparativo de Custos (Últimos Meses)</h4>
+        <ngx-charts-bar-vertical
+          [results]="barChartData"
+          [legend]="true"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Meses'"
+          [yAxisLabel]="'Custo (R$)'">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+</div>

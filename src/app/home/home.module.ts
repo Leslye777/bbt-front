@@ -17,11 +17,14 @@ import { MatListModule } from '@angular/material/list';
 import { UtilsModule } from '../utils/utils.module'; // Importa o UtilsModule
 import { MatExpansionModule } from '@angular/material/expansion'; // Importa o Accordion
 import { HistoryComponent } from './history/history.component';
+import { RelatoriosComponent } from './relatorios/relatorios.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
     HomePageComponent,
     HistoryComponent,
+    RelatoriosComponent, // Certifique-se de que o componente está declarado aqui
   ],
   imports: [
     CommonModule,
@@ -40,6 +43,7 @@ import { HistoryComponent } from './history/history.component';
     MatListModule,
     UtilsModule, // Usa o UtilsModule para cards e outros utilitários
     MatExpansionModule, // Adiciona o Accordion
+    NgxChartsModule
   ],
   providers: [HomeService],
 })

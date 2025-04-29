@@ -44,22 +44,29 @@
             <input id="cpfCnpj" type="text" class="form-control" style="width: 95%;" placeholder="Digite o CPF ou CNPJ" />
           </div>
 
-          <button type="button" class="btn btn-primary" (click)="simulatePackCadastral()">Consultar</button>
-        </form>
+          <!-- Botões de Ação -->
+          <div class="button-group">
+            <!-- Botão de Simular Carregamento -->
+            <button
+              type="button"
+              class="btn btn-primary btn-generate"
+              [disabled]="loading || reportReady"
+              (click)="simulateLoading()"
+            >
+              {{ loading ? 'Carregando...' : 'Gerar Relatório' }}
+            </button>
 
-        <!-- Resultado Simulado -->
-        <div *ngIf="loading" class="loading">Carregando...</div>
-        <div *ngIf="result" class="result">
-          <h3>Resultado da Consulta</h3>
-          <p><strong>ID:</strong> <a>{{ result.id }}</a></p>
-          <p><strong>Nome/Razão Social:</strong> {{ result.nome }}</p>
-          <p><strong>Data de Nascimento:</strong> {{ result.dataNascimento }}</p>
-          <p><strong>CPF/CNPJ:</strong> {{ result.cpfCnpj }}</p>
-          <p><strong>Renda Estimada:</strong> {{ result.rendaEstimada }}</p>
-          <p><strong>Status:</strong> {{ result.status }}</p>
-          <p><strong>Fonte:</strong> {{ result.fonte }}</p>
-          <p><strong>Data:</strong> {{ result.data }}</p>
-        </div>
+            <!-- Botão de Abrir Relatório -->
+            <button
+              type="button"
+              class="btn btn-success btn-open-report"
+              [disabled]="!reportReady"
+              (click)="openReport()"
+            >
+              <i class="fas fa-file-alt"></i> Abrir Relatório
+            </button>
+          </div>
+        </form>
       </div>
 
       <!-- Conteúdo padrão para outros cards -->

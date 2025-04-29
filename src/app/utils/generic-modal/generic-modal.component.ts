@@ -10,28 +10,23 @@ export class GenericModalComponent {
   @Input() modalTitle: string = ''; // Título do modal
   @Output() close = new EventEmitter<void>(); // Evento para fechar o modal
 
+  loading = false; // Controla o estado de carregamento
+  reportReady = false; // Controla se o botão de abrir relatório está habilitado
 
-  loading = false;
-  result: any = null;
-
-  simulatePackCadastral(): void {
+  simulateLoading(): void {
     this.loading = true;
-    this.result = null;
+    this.reportReady = false;
 
-    // Simula um tempo de carregamento
+    // Simula um tempo de carregamento (ex.: 2 segundos)
     setTimeout(() => {
       this.loading = false;
-      this.result = {
-        id: '680acf0333b5763d779fcf43',
-        nome: 'João da Silva',
-        dataNascimento: '15/03/1985',
-        cpfCnpj: '123.456.789-00',
-        status: 'Consulta realizada com sucesso',
-        rendaEstimada: 'R$ 5.000,00',
-        fonte: 'NeowayRenda',
-        data: '2023-10-01',
-      };
-    }, 2000); // 2 segundos de simulação
+      this.reportReady = true;
+    }, 2000);
+  }
+
+  openReport(): void {
+    const reportUrl = 'https://gestordefontes.segurosunimed.com.br/relatorio/9e5f3a4d-8b6b-4b20-9842-7795c5e6f493';
+    window.open(reportUrl, '_blank'); // Abre o relatório em uma nova aba
   }
 
   closeModal(): void {
