@@ -43,3 +43,12 @@ img{
 .btn-primary:hover {
   background-color: #283593;
 }
+
+header, .mat-toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 80px;
+  z-index: 100;
+}

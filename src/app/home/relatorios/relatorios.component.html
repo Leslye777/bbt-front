@@ -1,35 +1,50 @@
 <div class="card">
   <div class="card-header">
-    <h3>Relatórios</h3>
+    <h3>Monitoria do Sistema</h3>
   </div>
   <div class="card-body">
     <div class="chart-container">
-      <!-- Gráfico de Pizza -->
+      <!-- Gráfico de Pizza: Status das Consultas -->
       <div class="chart-item">
-        <h4>Requisições por Colaborador</h4>
-        <!-- <ngx-charts-pie-chart
-          [results]="pieChartData"
+        <h4>Status das Consultas</h4>
+        <ngx-charts-pie-chart
+          [results]="statusChartData"
           [legend]="true"
           [labels]="true"
-          [doughnut]="false"
+          [doughnut]="true"
           [explodeSlices]="false"
           [gradient]="true">
         </ngx-charts-pie-chart>
       </div>
 
-      <!-- Gráfico de Barras -->
-      <!-- <div class="chart-item">
-        <h4>Comparativo de Custos (Últimos Meses)</h4>
+      <!-- Gráfico de Barras: Consultas por Dia -->
+      <div class="chart-item">
+        <h4>Consultas por Dia</h4>
         <ngx-charts-bar-vertical
-          [results]="barChartData"
-          [legend]="true"
+          [results]="consultasPorDia"
+          [legend]="false"
           [xAxis]="true"
           [yAxis]="true"
           [showXAxisLabel]="true"
           [showYAxisLabel]="true"
-          [xAxisLabel]="'Meses'"
-          [yAxisLabel]="'Custo (R$)'">
-        </ngx-charts-bar-vertical> --> -->
+          [xAxisLabel]="'Dia'"
+          [yAxisLabel]="'Consultas'">
+        </ngx-charts-bar-vertical>
+      </div>
+
+      <!-- Gráfico de Linhas: Usuários Ativos -->
+      <div class="chart-item" style="flex-basis: 100%;">
+        <h4>Usuários Ativos ao Longo do Dia</h4>
+        <ngx-charts-line-chart
+          [results]="usoSistema"
+          [legend]="false"
+          [xAxis]="true"
+          [yAxis]="true"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [xAxisLabel]="'Hora'"
+          [yAxisLabel]="'Usuários'">
+        </ngx-charts-line-chart>
       </div>
     </div>
   </div>

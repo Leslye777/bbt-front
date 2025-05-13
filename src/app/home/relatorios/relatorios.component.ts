@@ -6,19 +6,34 @@ import { Component } from '@angular/core';
   styleUrls: ['./relatorios.component.css']
 })
 export class RelatoriosComponent {
-  // Dados para o gráfico de pizza
-  pieChartData = [
-    { name: 'Colaborador A', value: 40 },
-    { name: 'Colaborador B', value: 25 },
-    { name: 'Colaborador C', value: 20 },
-    { name: 'Equipe', value: 15 },
+  // Gráfico de pizza: Distribuição de status das consultas
+  statusChartData = [
+    { name: 'Sucesso', value: 120 },
+    { name: 'Erro', value: 15 },
+    { name: 'Pendente', value: 8 }
   ];
 
-  // Dados para o gráfico de barras
-  barChartData = [
-    { name: 'Janeiro', value: 1200 },
-    { name: 'Fevereiro', value: 1500 },
-    { name: 'Março', value: 1800 },
-    { name: 'Abril', value: 2000 },
+  // Gráfico de barras: Consultas por dia
+  consultasPorDia = [
+    { name: 'Seg', value: 30 },
+    { name: 'Ter', value: 45 },
+    { name: 'Qua', value: 38 },
+    { name: 'Qui', value: 50 },
+    { name: 'Sex', value: 42 }
+  ];
+
+  // Gráfico de linhas: Uso do sistema ao longo do tempo
+  usoSistema = [
+    {
+      name: 'Usuários ativos',
+      series: [
+        { name: '08:00', value: 5 },
+        { name: '10:00', value: 12 },
+        { name: '12:00', value: 20 },
+        { name: '14:00', value: 18 },
+        { name: '16:00', value: 25 },
+        { name: '18:00', value: 15 }
+      ]
+    }
   ];
 }

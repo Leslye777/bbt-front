@@ -108,3 +108,37 @@
   flex: 1;
   margin-right: 10px;
 }
+
+.resultado-cadastral.scrollable-cadastral {
+  max-height: 300px;
+  overflow-y: auto;
+  margin-top: 16px;
+  padding-right: 8px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fafbfc;
+}
+
+.cadastral-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+.cadastral-table th {
+  text-align: left;
+  padding: 6px 10px;
+  background: #f0f4f8;
+  width: 120px;
+  vertical-align: top;
+}
+
+.cadastral-table td {
+  padding: 6px 10px;
+  background: #fff;
+}
+
+.cadastral-table ul {
+  margin: 0;
+  padding-left: 18px;
+}

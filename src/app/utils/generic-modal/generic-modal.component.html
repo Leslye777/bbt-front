@@ -46,27 +46,54 @@
 
           <!-- Botões de Ação -->
           <div class="button-group">
-            <!-- Botão de Simular Carregamento -->
-            <button
-              type="button"
-              class="btn btn-primary btn-generate"
-              [disabled]="loading || reportReady"
-              (click)="simulateLoading()"
-            >
-              {{ loading ? 'Carregando...' : 'Gerar Relatório' }}
-            </button>
-
-            <!-- Botão de Abrir Relatório -->
             <button
               type="button"
               class="btn btn-success btn-open-report"
-              [disabled]="!reportReady"
-              (click)="openReport()"
+              [disabled]="loading"
+              (click)="gerarRelatorio()"
             >
-              <i class="fas fa-file-alt"></i> Abrir Relatório
+              {{ loading ? 'Carregando...' : 'Pesquisar' }}
             </button>
           </div>
         </form>
+
+        <div *ngIf="cadastralResult" class="resultado-cadastral scrollable-cadastral">
+          <h3>Dados Cadastrais</h3>
+          <table class="cadastral-table">
+            <tr><th>Nome</th><td>{{ cadastralResult.nome }}</td></tr>
+            <tr><th>CPF</th><td>{{ cadastralResult.cpf }}</td></tr>
+            <tr><th>Nascimento</th><td>{{ cadastralResult.nascimento }}</td></tr>
+            <tr><th>Endereço</th><td>{{ cadastralResult.endereco }}</td></tr>
+            <tr><th>Score</th><td>{{ cadastralResult.score }}</td></tr>
+            <tr><th>Situação</th><td>{{ cadastralResult.situacao }}</td></tr>
+            <tr>
+              <th>Telefones</th>
+              <td>
+                <ul>
+                  <li *ngFor="let tel of cadastralResult.telefones">{{ tel }}</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>E-mails</th>
+              <td>
+                <ul>
+                  <li *ngFor="let email of cadastralResult.emails">{{ email }}</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Restrições</th>
+              <td>
+                <ul>
+                  <li *ngFor="let r of cadastralResult.restricoes">
+                    {{ r.tipo }} - {{ r.data }} - R$ {{ r.valor | number:'1.2-2' }}
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
 
       <!-- Conteúdo padrão para outros cards -->

@@ -56,12 +56,13 @@
 
 /* Sidebar */
 .sidebar {
-  width: 250px;
-  background-color: #0c1c38; /* Azul primário */
-  color: #ffffff; /* Texto branco */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px; /* ajuste para a largura real da sua sidebar */
   height: 100vh;
-  transition: width 0.3s ease;
-  position: relative;
+  z-index: 0;
+  background: #0c1c38;
 }
 
 .sidebar.collapsed {
@@ -127,6 +128,7 @@
   flex-grow: 1;
   padding: 20px;
   transition: margin-left 0.3s ease;
+  margin-left: 240px; /* mesmo valor do width da sidebar */
 }
 
 .content.expanded {
@@ -311,4 +313,28 @@
   object-fit: contain;
   margin: 0 auto;
   display: block;
+}
+
+/* Estilo para submenus */
+.submenu {
+  list-style: none;
+  padding-left: 32px;
+  margin: 0;
+}
+
+.submenu__item {
+  display: block;
+  padding: 6px 0;
+  color: #ffffff; /* Texto branco */
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  background-color: #0c1c38; /* Azul primário */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.submenu__item:hover {
+  background-color: #ffffff; /* Azul mais escuro no hover */
+  color: #0c1c38; /* Texto branco no hover */
 }

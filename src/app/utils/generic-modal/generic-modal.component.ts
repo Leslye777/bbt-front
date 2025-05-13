@@ -11,22 +11,30 @@ export class GenericModalComponent {
   @Output() close = new EventEmitter<void>(); // Evento para fechar o modal
 
   loading = false; // Controla o estado de carregamento
-  reportReady = false; // Controla se o botão de abrir relatório está habilitado
+  cadastralResult: any = null; // Resultado da consulta cadastral
 
-  simulateLoading(): void {
+  gerarRelatorio() {
     this.loading = true;
-    this.reportReady = false;
+    this.cadastralResult = null;
 
-    // Simula um tempo de carregamento (ex.: 2 segundos)
+    // Simula um tempo de carregamento (ex.: 1.5 segundos)
     setTimeout(() => {
+      this.cadastralResult = {
+        nome: 'Maria da Silva',
+        cpf: '123.456.789-00',
+        nascimento: '01/01/1980',
+        endereco: 'Rua das Flores, 123, Centro, São Paulo/SP',
+        score: 850,
+        situacao: 'Regular',
+        telefones: ['(11) 99999-8888', '(11) 98888-7777'],
+        emails: ['maria@email.com', 'contato@mariasilva.com'],
+        restricoes: [
+          { tipo: 'Protesto', data: '10/03/2024', valor: 1200.00 },
+          { tipo: 'Ação Judicial', data: '15/02/2023', valor: 5000.00 }
+        ]
+      };
       this.loading = false;
-      this.reportReady = true;
-    }, 2000);
-  }
-
-  openReport(): void {
-    const reportUrl = 'https://gestordefontes.segurosunimed.com.br/relatorio/9e5f3a4d-8b6b-4b20-9842-7795c5e6f493';
-    window.open(reportUrl, '_blank'); // Abre o relatório em uma nova aba
+    }, 1500);
   }
 
   closeModal(): void {

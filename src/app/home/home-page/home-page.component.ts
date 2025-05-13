@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { SessionStorageService } from 'angular-web-storage';
-import { HomeService } from './../home.service';
+import { HomeService } from '../home.service';
 import { GenericModalComponent } from 'src/app/utils/generic-modal/generic-modal.component';
 import { Router, RouterLink } from '@angular/router';
 
@@ -44,6 +44,10 @@ export class HomePageComponent implements OnInit {
   // Exemplo dentro do seu GenericModalComponent
   cadastralResult: any = null;
   loading = false;
+
+  // No componente do menu lateral
+  configMenuOpen = false;
+  infoMenuOpen = false;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -172,5 +176,15 @@ export class HomePageComponent implements OnInit {
       };
       this.loading = false;
     }, 1500);
+  }
+
+  toggleConfigMenu(event: Event) {
+    event.preventDefault(); // Impede navegação do link
+    this.configMenuOpen = !this.configMenuOpen;
+  }
+
+  toggleInfoMenu(event: Event) {
+    event.preventDefault();
+    this.infoMenuOpen = !this.infoMenuOpen;
   }
 }

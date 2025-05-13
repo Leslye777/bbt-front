@@ -1,6 +1,6 @@
 <div class="page">
   <!-- Menu lateral -->
-  <div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar" style="margin-top: 80px;" [class.collapsed]="isCollapsed">
     <button class="toggle-button" (click)="toggleSidebar()">
       <i class="material-icons">
         {{ isCollapsed ? 'chevron_right' : 'chevron_left' }}
@@ -9,34 +9,54 @@
     <ul>
       <li>
         <a class="menu__item" routerLink="/home">
-          <i class="material-icons">home</i> <span *ngIf="!isCollapsed">Serviços</span>
+          <i class="material-icons">apps</i> <span *ngIf="!isCollapsed">Serviços</span>
         </a>
       </li>
       <li>
         <a class="menu__item" href="https://gestordefontes.segurosunimed.com.br/bilhetagem">
-          <i class="material-icons">shield</i> <span *ngIf="!isCollapsed">Bilhetagem</span>
+          <i class="material-icons">receipt_long</i> <span *ngIf="!isCollapsed">Bilhetagem</span>
         </a>
       </li>
       <li>
-        <a class="menu__item" routerLink="/clientes">
-          <i class="material-icons">people</i> <span *ngIf="!isCollapsed">Monitoria</span>
+        <a class="menu__item" routerLink="relatorio">
+          <i class="material-icons">monitor_heart</i> <span *ngIf="!isCollapsed">Monitoria</span>
         </a>
+      </li>
+            <li>
+        <a class="menu__item" href="#" (click)="toggleConfigMenu($event)">
+          <i class="material-icons">settings</i>
+          <span *ngIf="!isCollapsed">Configurações</span>
+
+        </a>
+        <ul *ngIf="configMenuOpen" class="submenu">
+          <li><a class="submenu__item" routerLink="/cadastro-fornecedores">Cadastro de Fornecedores</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-packs">Cadastro de Packs</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-ramos">Cadastro de Ramos</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-produtos">Cadastro de Produtos</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-processos">Cadastro de Processos</a></li>
+          <li><a class="submenu__item" routerLink="/customizacoes">Customizações</a></li>
+          <li><a class="submenu__item" routerLink="/matriz-regras">Matriz de Regras</a></li>
+          <li><a class="submenu__item" routerLink="/air">AIR (Avaliação Interna de Riscos)</a></li>
+        </ul>
       </li>
       <li>
-        <a class="menu__item" routerLink="home/relatorio">
-          <i class="material-icons">bar_chart</i> <span *ngIf="!isCollapsed">Configurações</span>
+        <a class="menu__item" href="#" (click)="toggleInfoMenu($event)">
+          <i class="material-icons">info</i>
+          <span *ngIf="!isCollapsed">Informações</span>
         </a>
+        <ul *ngIf="infoMenuOpen" class="submenu">
+          <li><a class="submenu__item" routerLink="/portfolio">Portfólio</a></li>
+          <li><a class="submenu__item" routerLink="/documentacao-tecnica">Documentação Técnica</a></li>
+          <li><a class="submenu__item" routerLink="/apresentacoes">Apresentações</a></li>
+        </ul>
       </li>
-       <li>
+      <li>
         <a class="menu__item" href="/login" (click)="exit()">
-          <i class="material-icons">exit_to_app</i> <span *ngIf="!isCollapsed">Informações</span>
+          <i class="material-icons">logout</i> <span *ngIf="!isCollapsed">Sair</span>
         </a>
       </li>
-      <li>
-        <a class="menu__item" href="/login" (click)="exit()">
-          <i class="material-icons">exit_to_app</i> <span *ngIf="!isCollapsed">Sair</span>
-        </a>
-      </li>
+      <!-- Exemplo de menu lateral com submenu expansível -->
+
     </ul>
   </div>
 
@@ -141,7 +161,7 @@
       <!-- Seção de Auditoria -->
       <div class="accordion-item">
         <div class="accordion-header" (click)="toggleSection('auditoria')">
-          <h2 class="section-title">Auditoria</h2>
+          <h2 class="section-title">Historico de Consultas</h2>
         </div>
         <div class="accordion-body" [class.hidden]="!sections['auditoria']">
           <hr class="section-divider" />
@@ -175,14 +195,6 @@
           <hr class="section-divider" />
           <div class="cards-container">
             <app-card
-              title="Inclusão de Regras"
-              subtitle="Solicitação de Regras"
-              description="Solicite a inclusão de novas regras no sistema."
-              icon="rule"
-              [details]="['Solicitações pendentes: 5', 'Última solicitação: 10/04/2025']"
-              (actionClick)="openModal('inclusao-regras', 'relatorios')">
-            </app-card>
-            <app-card
               title="Solicitação de Enriquecimento"
               subtitle="Solicitação de Dados"
               description="Solicite o enriquecimento de dados para análises."
@@ -201,6 +213,19 @@
       [modalType]="modalType"
       [modalTitle]="modalTitle"
       (close)="closeModal()">
+      <form>
+        <!-- ...seus campos... -->
+        <button type="button" (click)="gerarRelatorio()" [disabled]="loading">Abrir Relatório</button>
+      </form>
+
+      <div *ngIf="loading" class="loading-indicator">
+        Carregando dados...
+      </div>
+
+      <div *ngIf="cadastralResult" class="resultado-cadastral">
+        <h3>Dados Cadastrais</h3>
+        <pre>{{ cadastralResult | json }}</pre>
+      </div>
     </app-generic-modal>
   </div>
 

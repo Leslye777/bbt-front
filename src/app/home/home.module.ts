@@ -18,7 +18,7 @@ import { UtilsModule } from '../utils/utils.module'; // Importa o UtilsModule
 import { MatExpansionModule } from '@angular/material/expansion'; // Importa o Accordion
 import { HistoryComponent } from './history/history.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
-
+import { NgxChartsModule } from '@swimlane/ngx-charts'; // Importa o módulo de gráficos
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -42,6 +42,7 @@ import { RelatoriosComponent } from './relatorios/relatorios.component';
     MatListModule,
     UtilsModule, // Usa o UtilsModule para cards e outros utilitários
     MatExpansionModule, // Adiciona o Accordion
+    NgxChartsModule, // Adiciona o módulo de gráficos
   ],
   providers: [HomeService],
 })
