@@ -9,7 +9,7 @@
     <ul>
       <li>
         <a class="menu__item" routerLink="/home">
-          <i class="material-icons">home</i> <span *ngIf="!isCollapsed">Home</span>
+          <i class="material-icons">home</i> <span *ngIf="!isCollapsed">Serviços</span>
         </a>
       </li>
       <li>
@@ -19,12 +19,17 @@
       </li>
       <li>
         <a class="menu__item" routerLink="/clientes">
-          <i class="material-icons">people</i> <span *ngIf="!isCollapsed">Clientes</span>
+          <i class="material-icons">people</i> <span *ngIf="!isCollapsed">Monitoria</span>
         </a>
       </li>
       <li>
         <a class="menu__item" routerLink="home/relatorio">
-          <i class="material-icons">bar_chart</i> <span *ngIf="!isCollapsed">Relatórios</span>
+          <i class="material-icons">bar_chart</i> <span *ngIf="!isCollapsed">Configurações</span>
+        </a>
+      </li>
+       <li>
+        <a class="menu__item" href="/login" (click)="exit()">
+          <i class="material-icons">exit_to_app</i> <span *ngIf="!isCollapsed">Informações</span>
         </a>
       </li>
       <li>
@@ -41,25 +46,18 @@
           <div class="news-section">
             <h2 class="section-title">Notícias e Atualizações</h2>
             <hr class="section-divider" />
-            <div class="news-container">
-              <div class="news-card">
-                <h3 class="news-title">Manutenção Programada</h3>
-                <p class="news-description">
-                  O sistema estará em manutenção no dia 20/04/2025, das 00:00 às 04:00. Durante esse período, alguns serviços poderão ficar indisponíveis.
-                </p>
+            <div class="carousel-wrapper">
+              <button class="carousel-btn left" (click)="prevImage()" aria-label="Anterior">&lt;</button>
+              <div class="carousel-news">
+                <div class="carousel-news-item"
+                     *ngFor="let img of images; let i = index"
+                     [class.active]="i === currentIndex">
+                  <div class="news-card">
+                    <img [src]="img" alt="Imagem {{ i + 1 }}">
+                  </div>
+                </div>
               </div>
-              <div class="news-card">
-                <h3 class="news-title">Nova Funcionalidade</h3>
-                <p class="news-description">
-                  Agora você pode acessar relatórios gerenciais diretamente na seção de Auditoria. Confira as novidades!
-                </p>
-              </div>
-              <div class="news-card">
-                <h3 class="news-title">Atualização de Segurança</h3>
-                <p class="news-description">
-                  Implementamos melhorias de segurança para proteger ainda mais os seus dados. Saiba mais na seção de Configurações.
-                </p>
-              </div>
+              <button class="carousel-btn right" (click)="nextImage()" aria-label="Próximo">&gt;</button>
             </div>
           </div>
     <!-- Acordeão manual -->
@@ -67,7 +65,7 @@
       <!-- Seção de Consultas -->
       <div class="accordion-item">
         <div class="accordion-header" (click)="toggleSection('consultas')">
-          <h2 class="section-title">Consultas</h2>
+          <h2 class="section-title">Serviços disponíveis</h2>
         </div>
         <div class="accordion-body" [class.hidden]="!sections['consultas']">
           <hr class="section-divider" />

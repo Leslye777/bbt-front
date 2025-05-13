@@ -24,6 +24,27 @@ export class HomePageComponent implements OnInit {
   modalType = '';
   modalTitle = '';
 
+  images: string[] = [
+    'assets/imagem1.png',
+    'assets/gf1.png',
+    'assets/gf2.png'
+    // Adicione mais imagens conforme necessário
+  ];
+  currentIndex = 0;
+  prevIndex = 0;
+
+  newsList = [
+    { title: 'Nova funcionalidade lançada!', description: 'Agora você pode consultar dados em tempo real.' },
+    { title: 'Manutenção programada', description: 'O sistema ficará indisponível no dia 20/05 das 00h às 06h.' },
+    { title: 'Atualização de segurança', description: 'Recomendamos atualizar suas credenciais.' }
+  ];
+
+  currentNewsIndex = 0;
+
+  // Exemplo dentro do seu GenericModalComponent
+  cadastralResult: any = null;
+  loading = false;
+
   constructor(
     private cdr: ChangeDetectorRef,
     private sanitizer: DomSanitizer,
@@ -34,6 +55,7 @@ export class HomePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    this.startCarousel();
   }
 
   ngAfterViewInit() {
@@ -86,5 +108,69 @@ export class HomePageComponent implements OnInit {
 
   toggleSection(section: string): void {
     this.sections[section] = !this.sections[section];
+  }
+
+  startCarousel(): void {
+    setInterval(() => {
+      this.nextSlide();
+    }, 6000);
+  }
+
+  nextSlide(): void {
+    this.prevIndex = this.currentIndex;
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.updateCarouselClasses();
+  }
+
+  updateCarouselClasses(): void {
+    const items = document.querySelectorAll('.carousel-item');
+    items.forEach((item, index) => {
+      item.classList.remove('active', 'prev');
+      if (index === this.currentIndex) {
+        item.classList.add('active');
+      } else if (index === this.prevIndex) {
+        item.classList.add('prev');
+      }
+    });
+  }
+
+  prevNews() {
+    this.currentNewsIndex = (this.currentNewsIndex - 1 + this.newsList.length) % this.newsList.length;
+  }
+
+  nextNews() {
+    this.currentNewsIndex = (this.currentNewsIndex + 1) % this.newsList.length;
+  }
+
+  prevImage() {
+    this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+  }
+
+  nextImage() {
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+  gerarRelatorio() {
+    this.loading = true;
+    this.cadastralResult = null;
+
+    // Simula delay e gera dados mockados
+    setTimeout(() => {
+      this.cadastralResult = {
+        nome: 'Maria da Silva',
+        cpf: '123.456.789-00',
+        nascimento: '01/01/1980',
+        endereco: 'Rua das Flores, 123, Centro, São Paulo/SP',
+        score: 850,
+        situacao: 'Regular',
+        telefones: ['(11) 99999-8888', '(11) 98888-7777'],
+        emails: ['maria@email.com', 'contato@mariasilva.com'],
+        restricoes: [
+          { tipo: 'Protesto', data: '10/03/2024', valor: 1200.00 },
+          { tipo: 'Ação Judicial', data: '15/02/2023', valor: 5000.00 }
+        ]
+      };
+      this.loading = false;
+    }, 1500);
   }
 }
