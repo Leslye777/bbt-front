@@ -18,12 +18,14 @@ import { UtilsModule } from '../utils/utils.module'; // Importa o UtilsModule
 import { MatExpansionModule } from '@angular/material/expansion'; // Importa o Accordion
 import { HistoryComponent } from './history/history.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts'; // Importa o módulo de gráficos
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ConsultasComponent } from './consultas/consultas.component'; // Importa o módulo de gráficos
 @NgModule({
   declarations: [
     HomePageComponent,
     HistoryComponent,
-    RelatoriosComponent, // Certifique-se de que o componente está declarado aqui
+    RelatoriosComponent,
+    ConsultasComponent, // Certifique-se de que o componente está declarado aqui
   ],
   imports: [
     CommonModule,

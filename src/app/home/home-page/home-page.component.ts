@@ -187,4 +187,14 @@ export class HomePageComponent implements OnInit {
     event.preventDefault();
     this.infoMenuOpen = !this.infoMenuOpen;
   }
+  toggleMonitorMenu(event: Event) {
+    event.preventDefault(); // Impede navegação do link
+    this.monitorMenuOpen = !this.monitorMenuOpen;
+  }
+
+  monitorMenuOpen = false;
+
+  navigateToConsultas(): void {
+    this.router.navigate(['/consultas']);
+  }
 }

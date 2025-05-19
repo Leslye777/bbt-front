@@ -18,15 +18,18 @@
         </a>
       </li>
       <li>
-        <a class="menu__item" routerLink="relatorio">
+        <a class="menu__item" href="#" (click)="toggleMonitorMenu($event)">
           <i class="material-icons">monitor_heart</i> <span *ngIf="!isCollapsed">Monitoria</span>
         </a>
+        <ul *ngIf="monitorMenuOpen" class="submenu">
+          <li><a class="submenu__item" routerLink="relatorio">Gráfico de Acompanhamento</a></li>
+          <li><a class="submenu__item" href="assets/image (14).png" target="_blank" rel="noopener">Dashboard</a></li>
+        </ul>
       </li>
-            <li>
+      <li>
         <a class="menu__item" href="#" (click)="toggleConfigMenu($event)">
           <i class="material-icons">settings</i>
           <span *ngIf="!isCollapsed">Configurações</span>
-
         </a>
         <ul *ngIf="configMenuOpen" class="submenu">
           <li><a class="submenu__item" routerLink="/cadastro-fornecedores">Cadastro de Fornecedores</a></li>
@@ -62,24 +65,22 @@
 
   <!-- Conteúdo principal -->
   <div class="content">
-          <!-- Seção de Notícias e Atualizações -->
-          <div class="news-section">
-            <h2 class="section-title">Notícias e Atualizações</h2>
-            <hr class="section-divider" />
-            <div class="carousel-wrapper">
-              <button class="carousel-btn left" (click)="prevImage()" aria-label="Anterior">&lt;</button>
-              <div class="carousel-news">
-                <div class="carousel-news-item"
-                     *ngFor="let img of images; let i = index"
-                     [class.active]="i === currentIndex">
-                  <div class="news-card">
-                    <img [src]="img" alt="Imagem {{ i + 1 }}">
-                  </div>
-                </div>
-              </div>
-              <button class="carousel-btn right" (click)="nextImage()" aria-label="Próximo">&gt;</button>
+    <!-- Seção de Notícias e Atualizações -->
+    <div class="news-section">
+      <h2 class="section-title">Notícias e Atualizações</h2>
+      <hr class="section-divider" />
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" (click)="prevImage()" aria-label="Anterior">&lt;</button>
+        <div class="carousel-news">
+          <div class="carousel-news-item" *ngFor="let img of images; let i = index" [class.active]="i === currentIndex">
+            <div class="news-card">
+              <img [src]="img" alt="Imagem {{ i + 1 }}">
             </div>
           </div>
+        </div>
+        <button class="carousel-btn right" (click)="nextImage()" aria-label="Próximo">&gt;</button>
+      </div>
+    </div>
     <!-- Acordeão manual -->
     <div class="accordion">
       <!-- Seção de Consultas -->
@@ -90,69 +91,14 @@
         <div class="accordion-body" [class.hidden]="!sections['consultas']">
           <hr class="section-divider" />
           <div class="cards-container">
-            <app-card
-              title="Consulta PEP"
-              subtitle="Consulta de Pessoas Expostas Politicamente"
-              description="Verifique se o cliente é uma pessoa exposta politicamente."
-              icon="search"
-              [details]="['Consultas realizadas: 120', 'Última consulta: 15/04/2025']"
-              (actionClick)="openModal('consulta-pep', 'Consulta PEP')">
+            <app-card title="Consultas" subtitle="Realize consultas detalhadas"
+              description="Clique para acessar os tipos de consultas disponíveis." icon="search"
+              (actionClick)="navigateToConsultas()">
             </app-card>
-            <app-card
-              title="Consulta Neoway Renda"
-              subtitle="Estimativa de Renda"
-              description="Obtenha informações sobre a estimativa de renda do cliente."
-              icon="attach_money"
-              [details]="['Consultas realizadas: 80', 'Última consulta: 14/04/2025']"
-              (actionClick)="openModal('neoway-renda', 'Consulta Neoway Renda')">
-            </app-card>
-            <app-card
-              title="Consulta Boa Vista"
-              subtitle="Informações de Crédito"
-              description="Acesse informações de crédito do cliente."
-              icon="credit_score"
-              [details]="['Consultas realizadas: 200', 'Última consulta: 13/04/2025']"
-              (actionClick)="openModal('boa-vista', 'Consulta Boa Vista')">
-            </app-card>
-            <app-card
-              title="Consulta Boa Vista Score"
-              subtitle="Pontuação de Crédito"
-              description="Verifique a pontuação de crédito do cliente."
-              icon="bar_chart"
-              [details]="['Consultas realizadas: 150', 'Última consulta: 12/04/2025']"
-              (actionClick)="openModal('boa-vista-score', 'Consulta Boa Vista Score')">
-            </app-card>
-            <app-card
-              title="Análises Especiais"
-              subtitle="Análise Avançada"
-              description="Realize análises especiais para casos específicos."
-              icon="analytics"
-              [details]="['Consultas realizadas: 50', 'Última consulta: 11/04/2025']"
-              (actionClick)="openModal('analises-especiais', 'Análises Especiais')">
-            </app-card>
-            <app-card
-              title="Trabalho Escravo"
-              subtitle="Verificação de Trabalho Escravo"
-              description="Verifique se há indícios de trabalho escravo associados ao cliente."
-              icon="gavel"
-              [details]="['Consultas realizadas: 30', 'Última consulta: 10/04/2025']"
-              (actionClick)="openModal('trabalho-escravo', 'Trabalho Escravo')">
-            </app-card>
-            <app-card
-              title="Consulta ONU"
-              subtitle="Lista de Sanções da ONU"
-              description="Verifique se o cliente está listado em sanções da ONU."
-              icon="public"
-              [details]="['Consultas realizadas: 20', 'Última consulta: 09/04/2025']"
-              (actionClick)="openModal('consulta-onu', 'Consulta ONU')">
-            </app-card>
-            <app-card
-              title="Consulta Neoway Cadastral"
-              subtitle="Consulta de Informações Cadastrais"
-              description="Realize consultas cadastrais detalhadas com base no CPF ou CNPJ."
-              icon="assignment"
-              [details]="['Última consulta: 10/04/2025']"
-              (actionClick)="openModal('neoway-cadastral', 'Consulta Neoway Cadastral')">
+            <app-card title="Solicitação de Enriquecimento" subtitle="Solicitação de Dados"
+              description="Solicite o enriquecimento de dados para análises." icon="add_circle"
+              [details]="['Solicitações realizadas: 10', 'Última solicitação: 09/04/2025']"
+              (actionClick)="openModal('solicitacao-enriquecimento', 'relatorios')">
             </app-card>
           </div>
         </div>
@@ -166,19 +112,13 @@
         <div class="accordion-body" [class.hidden]="!sections['auditoria']">
           <hr class="section-divider" />
           <div class="cards-container">
-            <app-card
-              title="Relatórios"
-              subtitle="Desempenho e análises"
-              description="Acesse relatórios detalhados sobre o desempenho das áreas."
-              icon="bar_chart"
+            <app-card title="Relatórios" subtitle="Desempenho e análises"
+              description="Acesse relatórios detalhados sobre o desempenho das áreas." icon="bar_chart"
               [details]="['Relatórios disponíveis: 8', 'Última geração: 09/04/2025']"
               (actionClick)="openModal('relatorios', 'relatorios')">
             </app-card>
-            <app-card
-              title="Histórico de Consultas"
-              subtitle="Acompanhe suas buscas"
-              description="Visualize o histórico completo de consultas realizadas no sistema."
-              icon="history"
+            <app-card title="Histórico de Consultas" subtitle="Acompanhe suas buscas"
+              description="Visualize o histórico completo de consultas realizadas no sistema." icon="history"
               [details]="['Consultas no mês: 50', 'Total de consultas: 1.200']"
               (actionClick)="openModal('historico-consultas', 'relatorios')">
             </app-card>
@@ -186,33 +126,11 @@
         </div>
       </div>
 
-      <!-- Seção de Solicitações -->
-      <div class="accordion-item">
-        <div class="accordion-header" (click)="toggleSection('solicitacoes')">
-          <h2 class="section-title">Solicitações</h2>
-        </div>
-        <div class="accordion-body" [class.hidden]="!sections['solicitacoes']">
-          <hr class="section-divider" />
-          <div class="cards-container">
-            <app-card
-              title="Solicitação de Enriquecimento"
-              subtitle="Solicitação de Dados"
-              description="Solicite o enriquecimento de dados para análises."
-              icon="add_circle"
-              [details]="['Solicitações realizadas: 10', 'Última solicitação: 09/04/2025']"
-              (actionClick)="openModal('solicitacao-enriquecimento', 'relatorios')">
-            </app-card>
-          </div>
-        </div>
-      </div>
 
     </div>
   </div>
   <div *ngIf="showModal">
-    <app-generic-modal
-      [modalType]="modalType"
-      [modalTitle]="modalTitle"
-      (close)="closeModal()">
+    <app-generic-modal [modalType]="modalType" [modalTitle]="modalTitle" (close)="closeModal()">
       <form>
         <!-- ...seus campos... -->
         <button type="button" (click)="gerarRelatorio()" [disabled]="loading">Abrir Relatório</button>
@@ -230,4 +148,3 @@
   </div>
 
 </div>
-

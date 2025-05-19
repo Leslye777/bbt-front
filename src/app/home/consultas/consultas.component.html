@@ -1,0 +1,129 @@
+<div class="consultas-container">
+  <h2 class="section-title">Consultas</h2>
+  <hr class="section-divider" />
+
+  <!-- Formulário de busca -->
+  <form class="consultas-form">
+    <div class="form-row">
+      <div class="form-group">
+        <label for="tipoConsulta">Pack de Consulta</label>
+        <select id="tipoConsulta" class="form-control" [(ngModel)]="tipoConsulta" name="tipoConsulta">
+          <option value="cadastral-neoway">Cadastral Neoway</option>
+          <option value="pep">PEP</option>
+          <option value="bvs">BVS</option>
+          <option value="apis-publicas">APIs Públicas</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="razaoSocial">Razão Social</label>
+        <input id="razaoSocial" type="text" class="form-control" placeholder="Digite a razão social" [(ngModel)]="informacoesCanalEntrada.razaoSocial" name="razaoSocial" />
+      </div>
+
+      <div class="form-group">
+        <label for="produto">Produto</label>
+        <input id="produto" type="text" class="form-control" placeholder="Digite o produto" [(ngModel)]="informacoesCanalEntrada.produtos[0].produto" name="produto" />
+      </div>
+
+      <div class="form-group">
+        <label for="investimento">Investimento</label>
+        <input id="investimento" type="text" class="form-control" placeholder="Digite o investimento" [(ngModel)]="informacoesCanalEntrada.produtos[0].investimento" name="investimento" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="cobertura">Cobertura</label>
+        <input id="cobertura" type="text" class="form-control" placeholder="Digite a cobertura" [(ngModel)]="informacoesCanalEntrada.produtos[0].cobertura" name="cobertura" />
+      </div>
+
+      <div class="form-group">
+        <label for="cnpj">CNPJ</label>
+        <input id="cnpj" type="text" class="form-control" placeholder="Digite o CNPJ" [(ngModel)]="informacoesCanalEntrada.cnpj" name="cnpj" />
+      </div>
+
+      <div class="form-group">
+        <label for="coberturas">Coberturas</label>
+        <input id="coberturas" type="text" class="form-control" placeholder="Digite as coberturas separadas por vírgula" [(ngModel)]="coberturasInput" name="coberturas" />
+      </div>
+
+      <div class="form-group">
+        <label for="processo">Processo</label>
+        <input id="processo" type="text" class="form-control" placeholder="Digite o processo" [(ngModel)]="informacoesCanalEntrada.processo" name="processo" />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label for="canal">Canal</label>
+        <input id="canal" type="text" class="form-control" placeholder="Digite o canal" [(ngModel)]="informacoesCanalEntrada.canal" name="canal" />
+      </div>
+
+      <div class="form-group">
+        <label for="ramo">Ramo</label>
+        <input id="ramo" type="text" class="form-control" placeholder="Digite o ramo" [(ngModel)]="informacoesCanalEntrada.ramo" name="ramo" />
+      </div>
+    </div>
+
+    <!-- Botão Buscar -->
+    <div class="form-actions">
+      <button type="button" class="btn btn-primary btn-buscar" (click)="buscarConsulta()">Buscar</button>
+    </div>
+  </form>
+<!-- Resultado da consulta -->
+  <div *ngIf="resultado" class="resultado-container">
+    <h3>Resultado da Consulta</h3>
+
+    <!-- Seção: devolutivaMotorCalculo -->
+    <div class="section">
+      <h4>Devolutiva Motor Cálculo</h4>
+      <div *ngFor="let regra of resultado.devolutivaMotorCalculo.regrasResponse" class="subsection">
+        <p><strong>Código Retorno:</strong> {{ regra.codigoRetorno }}</p>
+        <p><strong>Nome Amigável:</strong> {{ regra.nomeAmigavel }}</p>
+        <p><strong>Devolutiva:</strong> {{ regra.devolutiva }}</p>
+        <p><strong>Encaminhamento:</strong> {{ regra.encaminhamento }}</p>
+        <p><strong>Sinal:</strong> {{ regra.semaforo }}</p>
+      </div>
+    </div>
+
+    <!-- Seção: dadosConsultaFonte -->
+    <div class="section">
+      <h4>Dados da Consulta Fonte</h4>
+      <p><strong>CEP:</strong> {{ resultado.dadosConsultaFonte.cep }}</p>
+      <p><strong>Cidade:</strong> {{ resultado.dadosConsultaFonte.cidade }}</p>
+      <p><strong>UF:</strong> {{ resultado.dadosConsultaFonte.uf }}</p>
+      <p><strong>Classificação:</strong> {{ resultado.classificacao }}</p>
+      <p><strong>Área:</strong> {{ resultado.area }}</p>
+
+      <!-- Subseção: Cadastro Único -->
+      <div class="subsection">
+        <h5>Cadastro Único</h5>
+
+        <!-- Sub-subseção: CEPIM -->
+        <div *ngIf="resultado.dadosConsultaFonte.cadastroUnico.cepim.length > 0">
+          <h6>CEPIM</h6>
+          <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.cepim">
+            <p><strong>Motivo:</strong> {{ item.motivo }}</p>
+            <p><strong>Data Vigência:</strong> {{ item.dataVigencia }}</p>
+          </div>
+        </div>
+
+        <!-- Sub-subseção: CEIS -->
+        <div *ngIf="resultado.dadosConsultaFonte.cadastroUnico.ceis.length > 0">
+          <h6>CEIS</h6>
+          <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.ceis">
+            <p><strong>Órgão Sancionador:</strong> {{ item.orgaoSancionador }}</p>
+            <p><strong>Data Início:</strong> {{ item.dataInicioSancao }}</p>
+            <p><strong>Data Fim:</strong> {{ item.dataFimSancao }}</p>
+          </div>
+        </div>
+
+        <!-- Sub-subseção: CNEP -->
+        <div *ngIf="resultado.dadosConsultaFonte.cadastroUnico.cnep.length > 0">
+          <h6>CNEP</h6>
+          <p>Nenhum dado encontrado.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
