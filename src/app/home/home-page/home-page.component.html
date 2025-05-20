@@ -13,9 +13,13 @@
         </a>
       </li>
       <li>
-        <a class="menu__item" href="https://gestordefontes.segurosunimed.com.br/bilhetagem">
+        <a class="menu__item" href="#" (click)="toggleBilhetagemMenu($event)">
           <i class="material-icons">receipt_long</i> <span *ngIf="!isCollapsed">Bilhetagem</span>
         </a>
+        <ul *ngIf="bilhetagemMenuOpen" class="submenu">
+          <li><a class="submenu__item" href="#">Ramo</a></li>
+          <li><a class="submenu__item" href="https://gestordefontes.segurosunimed.com.br/bilhetagem" target="_blank" rel="noopener">Fornecedor</a></li>
+        </ul>
       </li>
       <li>
         <a class="menu__item" href="#" (click)="toggleMonitorMenu($event)">
@@ -48,9 +52,14 @@
           <span *ngIf="!isCollapsed">Informações</span>
         </a>
         <ul *ngIf="infoMenuOpen" class="submenu">
-          <li><a class="submenu__item" routerLink="/portfolio">Portfólio</a></li>
           <li><a class="submenu__item" routerLink="/documentacao-tecnica">Documentação Técnica</a></li>
-          <li><a class="submenu__item" routerLink="/apresentacoes">Apresentações</a></li>
+          <li> <a class="submenu__item" href="assets/NewsletterSprint.pdf" target="_blank" rel="noopener">
+              Boletim Informativo
+            </a></li>
+
+           <li> <a class="submenu__item"href="assets/CatalogoConsultas.pdf" target="_blank" rel="noopener">
+              Portfólio
+            </a></li>
         </ul>
       </li>
       <li>
