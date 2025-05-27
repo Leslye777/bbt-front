@@ -4,20 +4,51 @@
 
   <!-- Formulário de busca -->
   <form class="consultas-form">
-    <div class="form-row">
-      <div class="form-group">
+          <div class="form-group">
         <label for="tipoConsulta">Pack de Consulta</label>
-        <select id="tipoConsulta" class="form-control" [(ngModel)]="tipoConsulta" name="tipoConsulta">
-          <option value="cadastral-neoway">Cadastral Neoway</option>
-          <option value="pep">PEP</option>
-          <option value="bvs">BVS</option>
-          <option value="apis-publicas">APIs Públicas</option>
-        </select>
-      </div>
+        <mat-form-field class="form-control">
+          <mat-label>Selecione os packs</mat-label>
+          <mat-select
+            id="tipoConsulta"
+            [(ngModel)]="selectedPacks"
+            name="tipoConsulta"
+            multiple
+            (selectionChange)="onPackSelectionChange()"
+          >
+            <mat-option *ngFor="let pack of availablePacks" [value]="pack">
+              {{ pack }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
 
-      <div class="form-group">
+        <!-- Chips para os packs selecionados -->
+        <mat-chip-list>
+          <mat-chip
+            *ngFor="let pack of selectedPacks"
+            [removable]="true"
+            (removed)="removePack(pack)"
+          >
+            {{ pack }}
+            <button matChipRemove>❌</button>
+          </mat-chip>
+        </mat-chip-list>
+      </div>
+    <div class="form-row">
+
+
+      <div class="form-group"
+       [matTooltip]="isRazaoSocialDisabled ? 'Este campo está desabilitado porque o pack selecionado não contempla razão social.' : ''"
+          [matTooltipDisabled]="!isRazaoSocialDisabled">
         <label for="razaoSocial">Razão Social</label>
-        <input id="razaoSocial" type="text" class="form-control" placeholder="Digite a razão social" [(ngModel)]="informacoesCanalEntrada.razaoSocial" name="razaoSocial" />
+          <input
+            id="razaoSocial"
+            type="text"
+            class="form-control"
+            placeholder="Digite a razão social"
+            [(ngModel)]="informacoesCanalEntrada.razaoSocial"
+            name="razaoSocial"
+            [disabled]="isRazaoSocialDisabled"
+          />
       </div>
 
       <div class="form-group">
@@ -70,58 +101,109 @@
       <button type="button" class="btn btn-primary btn-buscar" (click)="buscarConsulta()">Buscar</button>
     </div>
   </form>
-<!-- Resultado da consulta -->
-  <div *ngIf="resultado" class="resultado-container">
-    <h3>Resultado da Consulta</h3>
 
-    <!-- Seção: devolutivaMotorCalculo -->
-    <div class="section">
-      <h4>Devolutiva Motor Cálculo</h4>
-      <div *ngFor="let regra of resultado.devolutivaMotorCalculo.regrasResponse" class="subsection">
-        <p><strong>Código Retorno:</strong> {{ regra.codigoRetorno }}</p>
-        <p><strong>Nome Amigável:</strong> {{ regra.nomeAmigavel }}</p>
-        <p><strong>Devolutiva:</strong> {{ regra.devolutiva }}</p>
-        <p><strong>Encaminhamento:</strong> {{ regra.encaminhamento }}</p>
-        <p><strong>Sinal:</strong> {{ regra.semaforo }}</p>
+  <!-- Resultado da consulta -->
+  <div *ngIf="resultado" class="resultado-container">
+    <h1>Resultado da Consulta</h1>
+
+    <!-- Card: Devolutiva do Motor de Cálculo -->
+    <div class="card">
+      <div class="card-header accordion-header"
+           (click)="devolutivaOpen = !devolutivaOpen">
+        <span>{{ devolutivaOpen ? '▼' : '▶' }}</span>
+        <span>Devolutiva do Motor de Cálculo</span>
+      </div>
+      <div class="card-body accordion-body"
+           [class.open]="devolutivaOpen"
+           [style.maxHeight]="devolutivaOpen ? '1000px' : '0px'">
+        <div *ngIf="devolutivaOpen">
+          <div *ngFor="let regra of resultado.devolutivaMotorCalculo.regrasResponse" class="devolutiva-item">
+            <p>
+              <strong>Código Retorno:</strong> {{ regra.codigoRetorno }}
+              <span class="badge" [ngClass]="{'badge-danger': regra.semaforo === 'VERMELHO', 'badge-success': regra.semaforo === 'VERDE', 'badge-secondary': regra.semaforo === 'BRANCO'}">
+                {{ regra.semaforo === 'VERMELHO' ? '🔴 Reprovado' : regra.semaforo === 'VERDE' ? '🟢 Aprovado' : '⚪ Não Aplicado' }}
+              </span>
+            </p>
+            <p><strong>Nome Amigável:</strong> {{ regra.nomeAmigavel }}</p>
+            <p><strong>Devolutiva:</strong> {{ regra.devolutiva }}</p>
+            <p><strong>Encaminhamento:</strong> {{ regra.encaminhamento }}</p>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- Seção: dadosConsultaFonte -->
-    <div class="section">
-      <h4>Dados da Consulta Fonte</h4>
-      <p><strong>CEP:</strong> {{ resultado.dadosConsultaFonte.cep }}</p>
-      <p><strong>Cidade:</strong> {{ resultado.dadosConsultaFonte.cidade }}</p>
-      <p><strong>UF:</strong> {{ resultado.dadosConsultaFonte.uf }}</p>
-      <p><strong>Classificação:</strong> {{ resultado.classificacao }}</p>
-      <p><strong>Área:</strong> {{ resultado.area }}</p>
-
-      <!-- Subseção: Cadastro Único -->
-      <div class="subsection">
-        <h5>Cadastro Único</h5>
-
-        <!-- Sub-subseção: CEPIM -->
-        <div *ngIf="resultado.dadosConsultaFonte.cadastroUnico.cepim.length > 0">
-          <h6>CEPIM</h6>
-          <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.cepim">
-            <p><strong>Motivo:</strong> {{ item.motivo }}</p>
-            <p><strong>Data Vigência:</strong> {{ item.dataVigencia }}</p>
+    <!-- Card: Dados da Consulta Fonte -->
+    <div class="card mt-4">
+      <div class="card-header accordion-header"
+           (click)="dadosFonteOpen = !dadosFonteOpen">
+        <span>{{ dadosFonteOpen ? '▼' : '▶' }}</span>
+        <span>Dados da Consulta Fonte</span>
+      </div>
+      <div class="card-body accordion-body"
+           [class.open]="dadosFonteOpen"
+           [style.maxHeight]="dadosFonteOpen ? '1000px' : '0px'">
+        <div *ngIf="dadosFonteOpen">
+          <div class="row">
+            <div class="col-md-4">
+              <p><strong>CEP:</strong> {{ resultado.dadosConsultaFonte.cep }}</p>
+            </div>
+            <div class="col-md-4">
+              <p><strong>Cidade:</strong> {{ resultado.dadosConsultaFonte.cidade }}</p>
+            </div>
+            <div class="col-md-4">
+              <p><strong>UF:</strong> {{ resultado.dadosConsultaFonte.uf }}</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Classificação:</strong> {{ resultado.classificacao }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Área:</strong> {{ resultado.area }}</p>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
 
-        <!-- Sub-subseção: CEIS -->
-        <div *ngIf="resultado.dadosConsultaFonte.cadastroUnico.ceis.length > 0">
-          <h6>CEIS</h6>
-          <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.ceis">
-            <p><strong>Órgão Sancionador:</strong> {{ item.orgaoSancionador }}</p>
-            <p><strong>Data Início:</strong> {{ item.dataInicioSancao }}</p>
-            <p><strong>Data Fim:</strong> {{ item.dataFimSancao }}</p>
+    <!-- Card: Pendências / Sanções -->
+    <div class="card mt-4">
+      <div class="card-header accordion-header"
+           (click)="pendenciasOpen = !pendenciasOpen">
+        <span>{{ pendenciasOpen ? '▼' : '▶' }}</span>
+        <span>Pendências / Sanções</span>
+      </div>
+      <div class="card-body accordion-body"
+           [class.open]="pendenciasOpen"
+           [style.maxHeight]="pendenciasOpen ? '1000px' : '0px'">
+        <div *ngIf="pendenciasOpen">
+          <div class="sancao-bloco">
+            <div class="sancao-item">
+              <span class="sancao-titulo">CEPIM</span>
+              <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.cepim">
+                <p><strong>Motivo:</strong> {{ item.motivo }}</p>
+                <p><strong>Data Vigência:</strong> {{ item.dataVigencia }}</p>
+              </div>
+            </div>
+            <div class="sancao-item">
+              <span class="sancao-titulo">CEIS</span>
+              <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.ceis">
+                <p><strong>Órgão Sancionador:</strong> {{ item.orgaoSancionador }}</p>
+                <p><strong>Data Início:</strong> {{ item.dataInicioSancao }}</p>
+                <p><strong>Data Fim:</strong> {{ item.dataFimSancao }}</p>
+              </div>
+            </div>
+            <div class="sancao-item">
+              <span class="sancao-titulo">CNEP</span>
+              <div *ngIf="!resultado.dadosConsultaFonte.cadastroUnico.cnep?.length">
+                <p>Nenhum dado encontrado.</p>
+              </div>
+              <div *ngFor="let item of resultado.dadosConsultaFonte.cadastroUnico.cnep">
+                <!-- Adicione campos conforme necessário -->
+                <p><strong>Campo:</strong> {{ item.campo }}</p>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <!-- Sub-subseção: CNEP -->
-        <div *ngIf="resultado.dadosConsultaFonte.cadastroUnico.cnep.length > 0">
-          <h6>CNEP</h6>
-          <p>Nenhum dado encontrado.</p>
         </div>
       </div>
     </div>

@@ -56,16 +56,94 @@
 
 .resultado-container {
   margin-top: 20px;
-  padding: 20px;
-  background: #f9f9f9;
+}
+
+.card {
   border: 1px solid #ddd;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-color: #c3dafe;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  padding: 10px 15px;
+  font-weight: bold;
+  font-size: 20px;
+  color: #0c1c38;
+}
+
+.card-header:hover {
+  color: #0c1c38;
+}
+
+.card-body {
+  padding: 18px;
+}
+
+.badge {
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 18px;
+  color: #fff;
+}
+
+.badge-danger {
+  background-color: #dc3545;
+}
+
+.badge-success {
+  background-color: #28a745;
+}
+
+.badge-secondary {
+  background-color: #6c757d;
+}
+
+.accordion-button {
+  font-size: 18px;
+}
+
+.accordion-header {
+  background: #f0f4fa;
+  border-bottom: 1px solid #c3dafe;
+  padding: 14px 18px;
+  font-weight: bold;
+  font-size: 18px;
+  color: #17305c;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  transition: background 0.2s;
+}
+
+.accordion-header:hover {
+  background: #e3eaf7;
+}
+
+.accordion-body {
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 0;
+  padding: 0 18px;
+}
+
+.accordion-body.open {
+  padding: 18px;
+  /* max-height é controlado inline pelo [style.maxHeight] */
 }
 
 .resultado-detalhes {
   white-space: pre-wrap;
   font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .section {
@@ -97,4 +175,20 @@
 .subsection p {
   margin: 5px 0;
   font-size: 14px;
+}
+
+
+p{
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+p strong{
+  font-size: 22px;
+}
+
+::ng-deep .mat-tooltip {
+  font-size: 18px !important;
+  line-height: 1.6;
+  padding: 12px 18px;
 }

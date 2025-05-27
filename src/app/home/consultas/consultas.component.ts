@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-consultas',
   templateUrl: './consultas.component.html',
-  styleUrls: ['./consultas.component.css']
+  styleUrls: ['./consultas.component.css'],
 })
 export class ConsultasComponent {
   tipoConsulta: string = 'cadastral-neoway';
@@ -14,10 +14,23 @@ export class ConsultasComponent {
     coberturas: [],
     processo: '',
     canal: '',
-    ramo: ''
+    ramo: '',
   };
   coberturasInput: string = '';
   resultado: any = null;
+
+  availablePacks: string[] = [
+    'Cadastral Neoway',
+    'PEP',
+    'BVS',
+    'APIs Públicas',
+  ];
+  selectedPacks: string[] = [];
+  isRazaoSocialDisabled: boolean = true;
+
+  devolutivaOpen = false;
+  dadosFonteOpen = false;
+  pendenciasOpen = false;
 
   buscarConsulta(): void {
     // Atualiza o resultado com os dados mockados
@@ -69,5 +82,17 @@ export class ConsultasComponent {
         },
       },
     };
+  }
+
+  onPackSelectionChange(): void {
+    this.isRazaoSocialDisabled = this.selectedPacks.length === 1;
+  }
+
+  removePack(pack: string): void {
+    const index = this.selectedPacks.indexOf(pack);
+    if (index >= 0) {
+      this.selectedPacks.splice(index, 1);
+      this.onPackSelectionChange();
+    }
   }
 }

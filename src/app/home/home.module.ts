@@ -20,6 +20,9 @@ import { HistoryComponent } from './history/history.component';
 import { RelatoriosComponent } from './relatorios/relatorios.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ConsultasComponent } from './consultas/consultas.component'; // Importa o módulo de gráficos
+import { MatSelectModule } from '@angular/material/select';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   declarations: [
     HomePageComponent,
@@ -45,6 +48,9 @@ import { ConsultasComponent } from './consultas/consultas.component'; // Importa
     UtilsModule, // Usa o UtilsModule para cards e outros utilitários
     MatExpansionModule, // Adiciona o Accordion
     NgxChartsModule, // Adiciona o módulo de gráficos
+    MatSelectModule, // Adiciona o seletor múltiplo
+    MatChipsModule, // Adiciona os chips
+    MatTooltipModule, // Adiciona os tooltips
   ],
   providers: [HomeService],
 })
