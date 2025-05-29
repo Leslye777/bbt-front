@@ -1,6 +1,6 @@
 <div class="page">
   <!-- Menu lateral -->
-  <div class="sidebar" style="margin-top: 80px;" [class.collapsed]="isCollapsed">
+  <div class="sidebar" style="margin-top: 80px; overflow: auto;" [class.collapsed]="isCollapsed">
     <button class="toggle-button" (click)="toggleSidebar()">
       <i class="material-icons">
         {{ isCollapsed ? 'chevron_right' : 'chevron_left' }}
