@@ -1,0 +1,141 @@
+<div class="page">
+
+   <!-- Menu lateral -->
+   <div class="sidebar" [class.collapsed]="isCollapsed">
+    <button class="toggle-button" (click)="toggleSidebar()">
+      <i class="material-icons">
+        {{ isCollapsed ? 'chevron_right' : 'chevron_left' }}
+      </i>
+    </button>
+    <ul>
+      <li>
+        <a class="menu__item" routerLink="/home">
+          <i class="material-icons">home</i> <span *ngIf="!isCollapsed">Home</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" href="https://gestordefontes.segurosunimed.com.br/bilhetagem">
+          <i class="material-icons">shield</i> <span *ngIf="!isCollapsed">Bilhetagem</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" routerLink="/clientes">
+          <i class="material-icons">people</i> <span *ngIf="!isCollapsed">Clientes</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" routerLink="home/relatorio">
+          <i class="material-icons">bar_chart</i> <span *ngIf="!isCollapsed">Relatórios</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" href="/login" (click)="exit()">
+          <i class="material-icons">exit_to_app</i> <span *ngIf="!isCollapsed">Sair</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h2 class="section-title">Histórico de Pesquisas</h2>
+    <hr class="section-divider" />
+
+
+    <!-- Filtros -->
+    <form class="filter-form">
+      <div class="form-group">
+        <label for="consulta">Consulta</label>
+        <select id="consulta" name="consulta" class="form-control" [(ngModel)]="filters.consulta">
+          <option value="">Selecione</option>
+          <option value="Consulta Neoway Cadastral">Consulta Neoway Cadastral</option>
+          <option value="Consulta PEP">Consulta PEP</option>
+          <option value="Consulta Boa Vista">Consulta Boa Vista</option>
+          <option value="Consulta ONU">Consulta ONU</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="id">ID da Consulta</label>
+        <input id="id" name="id" type="text" class="form-control" placeholder="Digite o ID" [(ngModel)]="filters.id" />
+      </div>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" class="form-control" placeholder="Digite o nome" [(ngModel)]="filters.nome" />
+      </div>
+      <div class="form-group">
+        <label for="data">Data</label>
+        <input id="data" name="data" type="date" class="form-control" [(ngModel)]="filters.data" />
+      </div>
+      <div class="form-group">
+        <label for="cpfCnpj">CPF/CNPJ</label>
+        <input id="cpfCnpj" name="cpfCnpj" type="text" class="form-control" placeholder="Digite o CPF ou CNPJ" [(ngModel)]="filters.cpfCnpj" />
+      </div>
+      <div class="form-group">
+        <label for="fonte">Fonte</label>
+        <select id="fonte" name="fonte" class="form-control" [(ngModel)]="filters.fonte">
+          <option value="">Selecione</option>
+          <option value="Neoway">Neoway</option>
+          <option value="PEP">PEP</option>
+          <option value="Boa Vista">Boa Vista</option>
+          <option value="ONU">ONU</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="ramo">Ramo</label>
+        <select id="ramo" name="ramo" class="form-control" [(ngModel)]="filters.ramo">
+          <option value="">Selecione</option>
+          <option value="Vida">Vida</option>
+          <option value="Previdência">Previdência</option>
+          <option value="Auto">Auto</option>
+          <option value="Residencial">Residencial</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="processo">Processo</label>
+        <select id="processo" name="processo" class="form-control" [(ngModel)]="filters.processo">
+          <option value="">Selecione</option>
+          <option value="Análise">Análise</option>
+          <option value="Validação">Validação</option>
+          <option value="Consulta">Consulta</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="usuario">Usuário</label>
+        <input id="usuario" name="usuario" type="text" class="form-control" placeholder="Digite o usuário" [(ngModel)]="filters.usuario" />
+      </div>
+      <div class="form-group filter-button">
+        <button type="button" class="btn btn-primary" (click)="applyFilters()">Filtrar</button>
+      </div>
+    </form>
+
+    <!-- Tabela -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Consulta</th>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Data</th>
+          <th>CPF/CNPJ</th>
+          <th>Fonte</th>
+          <th>Ramo</th>
+          <th>Processo</th>
+          <th>Usuario</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredData">
+          <td>{{ item.consulta }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.nome }}</td>
+          <td>{{ item.data }}</td>
+          <td>{{ item.cpfCnpj }}</td>
+          <td>{{ item.fonte }}</td>
+          <td>{{ item.ramo }}</td>
+          <td>{{ item.processo }}</td>
+          <td>{{ item.usuario }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  </div>

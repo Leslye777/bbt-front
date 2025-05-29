@@ -1,47 +1,25 @@
-<div class="header">
-  <div class="toolbar">
-    <mat-toolbar style="justify-content: center; display: flex;" color="primary">
-      <div class="logo-header">
-        <div style="display: flex; flex-direction: column; ">
-          <img src="assets/logo.png" >
-          <span style="font-size: 12px; display: flex; justify-content: center; line-height: 0.8; margin-bottom: 10px;">Liberty Lib</span>
-        </div>
+<div class="layout-container">
+
+  <!-- Cabeçalho -->
+  <header>
+    <mat-toolbar color="primary" style="background-color: #0c1c38;
+      height: 80px; display: flex; justify-content: flex-start;">
+      <div style="display: flex; align-items: center; margin-left: 40px;">
+        <a href="/home" style="text-decoration: none; color: white;">
+          <img src="assets/imagem1.png"/>
+        </a>
       </div>
-
     </mat-toolbar>
-  </div>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer" style="background-color: #0c1c38 !important;">
+    <p>© 2025 LibertyLib. Todos os direitos reservados.</p>
+  </footer>
+
 </div>
-
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer  #drawer class="example-sidenav" mode="side">
-    <div class="hamburger-menu">
-        <li><a class="menu__item" routerLink="/home"><i class="material-icons">home</i> Home</a></li>
-        <li><a class="menu__item" routerLink="/books"><i class="material-icons">menu_book</i> Book</a></li>
-        <li *ngIf="!verificaUser()"><a class="menu__item"  routerLink="/books/notification"><i class="material-icons">people</i> User</a></li>
-        <li *ngIf="!verificaUser()"><a class="menu__item" routerLink="/loans/loan"><i class="material-icons">book</i> Loan/Return</a></li>
-        <li><a class="menu__item" routerLink="/loans"><i class="material-icons">event_note</i>
-          <span *ngIf="verificaUser()"> My Loans</span>
-          <span *ngIf="!verificaUser()"> Loans</span>
-        </a></li>
-        <li><a class="menu__item" href="/login" (click)="exit()"><i class="material-icons">exit_to_app</i> Log off</a></li>
-    </div>
-  </mat-drawer>
-
-  <div  class="example-sidenav-content" >
-    <button *ngIf="lastSegment!=='login'" mat-icon-button (click)="drawer.toggle()" style="border: none;">
-      <mat-icon>{{drawer.opened ? 'close' : 'menu'}}</mat-icon>
-    </button>
-    <div class="page-content">
-      <router-outlet></router-outlet>
-
-    </div>
-
-  </div>
-
-</mat-drawer-container>
-<mat-toolbar class="footer" color="primary">
-  <span>&copy; 2023 Universidade Federal De Viçosa</span>
-  <img [src]="sanitizeImagePath('../../../assets/brasao_01-1_resized(3).png')">
-  <img [src]="sanitizeImagePath('../../../assets/logotipo-UFV1-4-300x236.png')">
-
-</mat-toolbar>

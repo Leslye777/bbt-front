@@ -1,65 +1,159 @@
 <div class="page">
-  <h1 style="text-align: center;">Olá {{user?.firstName}} {{user?.lastName}} </h1>
-  <ngu-carousel #myCarousel [inputs]="carouselConfig" [dataSource]="[first, second, third]">
-    <div *nguCarouselDef="let item;" class="item">
-      <div class="tile">
-        <ng-container *ngTemplateOutlet="item"></ng-container>
+  <!-- Menu lateral -->
+  <div class="sidebar" style="margin-top: 80px;" [class.collapsed]="isCollapsed">
+    <button class="toggle-button" (click)="toggleSidebar()">
+      <i class="material-icons">
+        {{ isCollapsed ? 'chevron_right' : 'chevron_left' }}
+      </i>
+    </button>
+    <ul>
+      <li>
+        <a class="menu__item" routerLink="/home">
+          <i class="material-icons">apps</i> <span *ngIf="!isCollapsed">Serviços</span>
+        </a>
+      </li>
+      <li>
+        <a class="menu__item" href="#" (click)="toggleBilhetagemMenu($event)">
+          <i class="material-icons">receipt_long</i> <span *ngIf="!isCollapsed">Bilhetagem</span>
+        </a>
+        <ul *ngIf="bilhetagemMenuOpen" class="submenu">
+          <li><a class="submenu__item" href="#">Ramo</a></li>
+          <li><a class="submenu__item" href="https://gestordefontes.segurosunimed.com.br/bilhetagem" target="_blank" rel="noopener">Fornecedor</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="menu__item" href="#" (click)="toggleMonitorMenu($event)">
+          <i class="material-icons">monitor_heart</i> <span *ngIf="!isCollapsed">Monitoria</span>
+        </a>
+        <ul *ngIf="monitorMenuOpen" class="submenu">
+          <li><a class="submenu__item" routerLink="relatorio">Gráfico de Acompanhamento</a></li>
+          <li><a class="submenu__item" href="assets/image (14).png" target="_blank" rel="noopener">Dashboard</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="menu__item" href="#" (click)="toggleConfigMenu($event)">
+          <i class="material-icons">settings</i>
+          <span *ngIf="!isCollapsed">Configurações</span>
+        </a>
+        <ul *ngIf="configMenuOpen" class="submenu">
+          <li><a class="submenu__item" routerLink="/cadastro-fornecedores">Cadastro de Fornecedores</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-packs">Cadastro de Packs</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-ramos">Cadastro de Ramos</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-produtos">Cadastro de Produtos</a></li>
+          <li><a class="submenu__item" routerLink="/cadastro-processos">Cadastro de Processos</a></li>
+          <li><a class="submenu__item" routerLink="/customizacoes">Customizações</a></li>
+          <li><a class="submenu__item" routerLink="/matriz-regras">Matriz de Regras</a></li>
+          <li><a class="submenu__item" routerLink="/air">AIR (Avaliação Interna de Riscos)</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="menu__item" href="#" (click)="toggleInfoMenu($event)">
+          <i class="material-icons">info</i>
+          <span *ngIf="!isCollapsed">Informações</span>
+        </a>
+        <ul *ngIf="infoMenuOpen" class="submenu">
+          <li><a class="submenu__item" routerLink="/documentacao-tecnica">Documentação Técnica</a></li>
+          <li> <a class="submenu__item" href="assets/NewsletterSprint.pdf" target="_blank" rel="noopener">
+              Boletim Informativo
+            </a></li>
+
+           <li> <a class="submenu__item"href="assets/CatalogoConsultas.pdf" target="_blank" rel="noopener">
+              Portfólio
+            </a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="menu__item" href="/login" (click)="exit()">
+          <i class="material-icons">logout</i> <span *ngIf="!isCollapsed">Sair</span>
+        </a>
+      </li>
+      <!-- Exemplo de menu lateral com submenu expansível -->
+
+    </ul>
+  </div>
+
+  <!-- Conteúdo principal -->
+  <div class="content">
+    <!-- Seção de Notícias e Atualizações -->
+    <div class="news-section">
+      <h2 class="section-title">Notícias e Atualizações</h2>
+      <hr class="section-divider" />
+      <div class="carousel-wrapper">
+        <button class="carousel-btn left" (click)="prevImage()" aria-label="Anterior">&lt;</button>
+        <div class="carousel-news">
+          <div class="carousel-news-item" *ngFor="let img of images; let i = index" [class.active]="i === currentIndex">
+            <div class="news-card">
+              <img [src]="img" alt="Imagem {{ i + 1 }}">
+            </div>
+          </div>
+        </div>
+        <button class="carousel-btn right" (click)="nextImage()" aria-label="Próximo">&gt;</button>
       </div>
     </div>
+    <!-- Acordeão manual -->
+    <div class="accordion">
+      <!-- Seção de Consultas -->
+      <div class="accordion-item">
+        <div class="accordion-header" (click)="toggleSection('consultas')">
+          <h2 class="section-title">Serviços disponíveis</h2>
+        </div>
+        <div class="accordion-body" [class.hidden]="!sections['consultas']">
+          <hr class="section-divider" />
+          <div class="cards-container">
+            <app-card title="Consultas" subtitle="Realize consultas detalhadas"
+              description="Clique para acessar os tipos de consultas disponíveis." icon="search"
+              (actionClick)="navigateToConsultas()">
+            </app-card>
+            <app-card title="Solicitação de Enriquecimento" subtitle="Solicitação de Dados"
+              description="Solicite o enriquecimento de dados para análises." icon="add_circle"
+              [details]="['Solicitações realizadas: 10', 'Última solicitação: 09/04/2025']"
+              (actionClick)="openModal('solicitacao-enriquecimento', 'relatorios')">
+            </app-card>
+          </div>
+        </div>
+      </div>
 
-    <ng-template #first>
-      <img [src]="sanitizeImagePath('../../../assets/sistemas_info_resized.png')">
-    </ng-template>
+      <!-- Seção de Auditoria -->
+      <div class="accordion-item">
+        <div class="accordion-header" (click)="toggleSection('auditoria')">
+          <h2 class="section-title">Historico de Consultas</h2>
+        </div>
+        <div class="accordion-body" [class.hidden]="!sections['auditoria']">
+          <hr class="section-divider" />
+          <div class="cards-container">
+            <app-card title="Relatórios" subtitle="Desempenho e análises"
+              description="Acesse relatórios detalhados sobre o desempenho das áreas." icon="bar_chart"
+              [details]="['Relatórios disponíveis: 8', 'Última geração: 09/04/2025']"
+              (actionClick)="openModal('relatorios', 'relatorios')">
+            </app-card>
+            <app-card title="Histórico de Consultas" subtitle="Acompanhe suas buscas"
+              description="Visualize o histórico completo de consultas realizadas no sistema." icon="history"
+              [details]="['Consultas no mês: 50', 'Total de consultas: 1.200']"
+              (actionClick)="openModal('historico-consultas', 'relatorios')">
+            </app-card>
+          </div>
+        </div>
+      </div>
 
-    <ng-template #second>
-      <img [src]="sanitizeImagePath('../../../assets/2023_07_04_0af_Kleki.png')">
-    </ng-template>
 
-    <ng-template #third>
-      <img [src]="sanitizeImagePath('../../../assets/Screenshot 2023-07-04 at 06-30-31 UFV – Universidade Federal de Viçosa.png')">
-    </ng-template>
-
-    <button NguCarouselNext class="rightRs">></button>
-    <button NguCarouselPrev class="leftRs"><</button>
-    <ul class="myPoint" NguCarouselPoint>
-      <li *ngFor="let j of myCarousel.pointNumbers; let i = index" [class.active]="i==myCarousel.activePoint" (click)="myCarousel.moveTo(i)"></li>
-    </ul>
-  </ngu-carousel>
-
-  <hr>
-  <h1>Bulletin Board</h1>
-  <div style="display: flex; flex-direction: column; width: 45%; float: right;">
-    <div class="board">
-      <a>"Biblioteca pública oferece acesso gratuito a e-books para incentivar a leitura digital""</a>
-    </div>
-
-    <div class="board">
-      <a>"Autor de best-seller anuncia novo romance para o final do ano"</a>
-    </div>
-    <div class="board">
-      <a>Links Uteis</a>
-    </div>
-    <div class="board-warning">
-      <a>Você possui pendencias</a>
     </div>
   </div>
-  <div style="display: flex; flex-direction: column; width: 45%;">
-    <div class="board">
-      <a>"Biblioteca pública oferece acesso gratuito a e-books para incentivar a leitura digital""</a>
-    </div>
-    <div class="board-warning">
-      <a>Data final para entrega de documentos </a>
-    </div>
+  <div *ngIf="showModal">
+    <app-generic-modal [modalType]="modalType" [modalTitle]="modalTitle" (close)="closeModal()">
+      <form>
+        <!-- ...seus campos... -->
+        <button type="button" (click)="gerarRelatorio()" [disabled]="loading">Abrir Relatório</button>
+      </form>
 
-    <div class="board">
-      <a>"Autor de best-seller anuncia novo romance para o final do ano"</a>
-    </div>
-    <div class="board">
-      <a>Links Uteis</a>
-    </div>
+      <div *ngIf="loading" class="loading-indicator">
+        Carregando dados...
+      </div>
 
-
+      <div *ngIf="cadastralResult" class="resultado-cadastral">
+        <h3>Dados Cadastrais</h3>
+        <pre>{{ cadastralResult | json }}</pre>
+      </div>
+    </app-generic-modal>
   </div>
-
 
 </div>

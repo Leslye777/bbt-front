@@ -1,0 +1,15 @@
+<div class="card" (click)="onActionClick()">
+  <div class="card-header">
+    <i class="material-icons">{{ icon }}</i>
+    <div class="card-header-text">
+      <h3>{{ title }}</h3>
+      <p>{{ subtitle }}</p>
+    </div>
+  </div>
+  <div class="card-body">
+    <p>{{ description }}</p>
+    <ul *ngIf="details?.length">
+      <li *ngFor="let detail of details">{{ detail }}</li>
+    </ul>
+  </div>
+</div>

@@ -1,44 +1,138 @@
-/* Estilo para o container do formulário */
-.login-container {
+/* .container deve também preencher o espaço disponível dentro do .content */
+.container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 500px;
+  flex: 1; /* permite que a div ocupe 100% do espaço vertical dentro do .content */
+  width: 100%;
+  box-shadow: 0 0 10px rgba(143, 128, 128, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-/* Estilo para o formulário */
-.login-form {
+/* As duas seções dividindo o espaço (login e carousel) */
+.login-section {
+  flex: 1;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #3f51b5;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo para o botão de login */
-.login-button {
-  background-color: #3f51b5;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.login-button:hover {
-  background-color: #3f51b5;
-}
-
-/* Estilo para o título do formulário */
-.login-title {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 20px;
+.logo-container {
   text-align: center;
+  margin-bottom: 20px;
+}
+
+.logo-container img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.login-form {
+  width: 80%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.login-form button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.separator {
+  width: 1px;
+  background-color: #ccc;
+  height: 100%;
+}
+
+.carousel-section {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  transition: none;
+  height: 100%;
+}
+
+.carousel-item {
+  min-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+  transform: translateX(100%);
+}
+
+.carousel-item.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.carousel-item.prev {
+  transform: translateX(-100%);
+  opacity: 0;
+}
+
+.carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.teste{
+  margin-top: 5px !important;
+  background-color: #0c1c38 !important;
+}
+
+.teste:hover{
+  background-color: white !important;
+  color: #0c1c38 !important;
+  border: 2px solid #0c1c38 !important;
+  border-radius: 5px !important;
+
+}
+
+.invalid-input {
+  border: 2px solid red;
+}
+.error-message {
+  color: red;
+  margin-top: 10px;
+  font-size: 14px;
 }

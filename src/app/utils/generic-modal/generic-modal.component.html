@@ -1,0 +1,105 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <!-- Botão de Fechar no canto superior direito -->
+    <button class="close-button" (click)="closeModal()">×</button>
+
+    <h2 class="modal-title">{{ modalTitle }}</h2>
+    <hr class="section-divider" />
+
+    <!-- Conteúdo do Modal -->
+    <ng-container [ngSwitch]="modalType">
+      <!-- Conteúdo para Consulta Neoway Cadastral -->
+      <div *ngSwitchCase="'neoway-cadastral'">
+        <form class="modal-form">
+          <div class="form-group">
+            <label for="ramo">Ramo</label>
+            <select id="ramo" class="form-control">
+              <option value="vida">Vida</option>
+              <option value="previdencia">Previdência</option>
+              <option value="auto">Auto</option>
+              <option value="residencial">Residencial</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="processo">Processo</label>
+            <select id="processo" class="form-control">
+              <option value="analise">Análise</option>
+              <option value="validacao">Validação</option>
+              <option value="consulta">Consulta</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <div>
+              <input type="radio" id="cpf" name="tipoDocumento" value="cpf" checked />
+              <label for="cpf">CPF</label>
+            </div>
+            <div>
+              <input type="radio" id="cnpj" name="tipoDocumento" value="cnpj" />
+              <label for="cnpj">CNPJ</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="cpfCnpj">Documento</label>
+            <input id="cpfCnpj" type="text" class="form-control" style="width: 95%;" placeholder="Digite o CPF ou CNPJ" />
+          </div>
+
+          <!-- Botões de Ação -->
+          <div class="button-group">
+            <button
+              type="button"
+              class="btn btn-success btn-open-report"
+              [disabled]="loading"
+              (click)="gerarRelatorio()"
+            >
+              {{ loading ? 'Carregando...' : 'Pesquisar' }}
+            </button>
+          </div>
+        </form>
+
+        <div *ngIf="cadastralResult" class="resultado-cadastral scrollable-cadastral">
+          <h3>Dados Cadastrais</h3>
+          <table class="cadastral-table">
+            <tr><th>Nome</th><td>{{ cadastralResult.nome }}</td></tr>
+            <tr><th>CPF</th><td>{{ cadastralResult.cpf }}</td></tr>
+            <tr><th>Nascimento</th><td>{{ cadastralResult.nascimento }}</td></tr>
+            <tr><th>Endereço</th><td>{{ cadastralResult.endereco }}</td></tr>
+            <tr><th>Score</th><td>{{ cadastralResult.score }}</td></tr>
+            <tr><th>Situação</th><td>{{ cadastralResult.situacao }}</td></tr>
+            <tr>
+              <th>Telefones</th>
+              <td>
+                <ul>
+                  <li *ngFor="let tel of cadastralResult.telefones">{{ tel }}</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>E-mails</th>
+              <td>
+                <ul>
+                  <li *ngFor="let email of cadastralResult.emails">{{ email }}</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th>Restrições</th>
+              <td>
+                <ul>
+                  <li *ngFor="let r of cadastralResult.restricoes">
+                    {{ r.tipo }} - {{ r.data }} - R$ {{ r.valor | number:'1.2-2' }}
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Conteúdo padrão para outros cards -->
+      <div *ngSwitchDefault>
+        <p>Conteúdo não configurado para este card.</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
